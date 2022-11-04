@@ -234,11 +234,11 @@
             <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <img src="img/SJM.png" height="20px" class="rounded me-2" alt="...">
-                    <strong class="me-auto">SJM</strong>
+                    <strong class="me-auto" style="font-size:16px;">SJM</strong>
                     <small>Agora</small>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body">
+                <div class="toast-body" style="font-size:16px;">
                     Crie sua conta <a href="cadastro.php">aqui!</a> Ou entre por <a href="entrar.php">aqui!</a>
                 </div>
             </div>
@@ -267,16 +267,16 @@
                         <div class="col col-link-footer"><a class="link-footer" href="index.php">Home</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Serviços</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="servicos-prestados.html">Serviços</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Contato</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="contato.php">Contato</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Sobre</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="sobre.html">Sobre</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Dicas</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="dicas.html">Dicas</a></div>
                     </div>
                 </div>
                 <div class="col-2 col-link link-centro">
@@ -284,13 +284,13 @@
                         <div class="col text-footer">Criadores</div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">João Enrique</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="https://github.com/JoaoEnrique">João Enrique Barbosa</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Júlia da Silva</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="#">Júlia Dias</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Júlio da Silva</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="https://github.com/juliosn/proj-IBM/tree/v2">Júlio Neves</a></div>
                     </div>
                     <div class="row">
                         <div class="col col-link-footer"><a class="link-footer" href="#">Maria Eduarda</a></div>
@@ -304,19 +304,19 @@
                         <div class="col text-footer">Principais Pesquisas</div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Conserto</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="dicas.html">Conserto</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Troca de HD</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="dicas.html">Troca de HD</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Backup</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="dicas.html">Backup</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Troca de tela</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="dicas.html">Troca de tela</a></div>
                     </div>
                     <div class="row">
-                        <div class="col col-link-footer"><a class="link-footer" href="#">Placa mãe</a></div>
+                        <div class="col col-link-footer"><a class="link-footer" href="dicas.html">Placa mãe</a></div>
                     </div>
                 </div>
                 <div class="col-2 col-btn-footer">
