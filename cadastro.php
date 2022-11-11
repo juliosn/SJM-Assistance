@@ -12,10 +12,10 @@
 </head>
 <body>
     <header>
-    <nav class="navbar navbar-expand-md navbar-dark">
+        <nav class="navbar navbar-expand-xl navbar-dark">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <a class="navbar-brand logo-pc" href="index.php "><img src="img/SJM.png" height="70" alt="" srcset=""></a>
@@ -38,7 +38,7 @@
                     </ul>
                     </div>
                     <div class="nome-nav">
-                        SJM Assistencia
+                        SJM Assistance
                     </div>
                     <div class="d-btn">
                         <a class="btn btn-entrar" href="entrar.php">Entrar</a>
@@ -47,7 +47,7 @@
                     <div class="nome-cel">
                         <a class="link-nome-cel" href="index.php">
                             <img src="img/SJM.png" height="60" alt="" srcset="">
-                            SJM Assistencia
+                            SJM Assistance
                         </a>
                     </div>
                     </form>
@@ -66,16 +66,16 @@
             </div>
             <div class="offcanvas-body" style="background: #002060;">
                 <div class=" navbar-dark">
-                    <a class="navbar-brand logo-pc" style="width: 100%; display: flex; justify-content: center;" href="index.php "><img src="img/logo-nome-grande.png" height="200" alt="" srcset=""></a>
+                    <a class="navbar-brand logo-menu-celular" href="index.php "><img src="img/logo-nome-grande.png" height="200" alt="" srcset=""></a>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="servico.html">Serviços</a>
+                            <a class="nav-link" href="servico.php">Serviços</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contato.html">Contato</a>
+                            <a class="nav-link" href="contato.php">Contato</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="sobre.html">Sobre</a>
@@ -85,10 +85,10 @@
                         </li>
                     </ul>
                     <div class="row" style="margin-top: 20px;">
-                        <div class="col" style="justify-content: center;display: flex;">
+                        <div class="col col-btn-celular">
                             <a class="btn btn-entrar-footer" href="entrar.php">Entrar</a>
                         </div>
-                        <div class="col" style="display: flex; justify-content: center;">
+                        <div class="col col-btn-celular">
                             <a class="btn btn-cadastro-footer" href="cadastro.php">Cadastre-se</a></div>
                         </div>
                     </div>
@@ -118,35 +118,35 @@
                     <form class="form-cadastrar needs-validation" novalidate action="">
                         <h2 style="margin-bottom: 40px;">Informações pessoais</h2>
                         <div class="row">
-                            <div class="form-group col-md-6 mb-3">
+                            <div class="form-group col-md-6 mb-3 col-form-cadastro">
                                 <label for="txtNomeCadastro">Nome Completo</label>
                                 <input type="text" class="form-control" id="txtNomeCadastro" placeholder="" required select>
                                 <div class="invalid-feedback">
                                     Por favor, informe seu nome.
                                 </div>
                             </div>
-                            <div class="form-group col-md-6 mb-3">
+                            <div class="form-group col-md-6 mb-3 col-form-cadastro">
                                 <label for="txtNomeUsuarioCadastro">Nome de usuário</label>
                                 <input type="text" class="form-control" id="txtNomeUsuarioCadastro" placeholder="" required>
                                 <div class="invalid-feedback">
                                     Por favor, informe um nome de usuário.
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3" style="margin-top: 50px; margin-bottom: 30px;">
+                            <div class="col-md-6 mb-3 col-form-cadastro">
                                 <label for="txtEmailEntrar">Email</label>
                                 <input type="email" class="form-control" id="txtSenhaEntrar" placeholder="" required>
                                 <div class="invalid-feedback">
                                 Por favor, informe seu email.
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3" style="margin-top: 50px; margin-bottom: 30px;">
+                            <div class="col-md-6 mb-3 col-form-cadastro">
                                 <label for="txtConfirmarEmailEntrar">Confirmar Email</label>
                                 <input type="email" class="form-control" id="txtSenhaEntrar" placeholder="" required>
                                 <div class="invalid-feedback">
                                     Por favor, informe seu email.
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3" style="margin-top: 50px; margin-bottom: 30px;">
+                            <div class="col-md-6 mb-3 col-form-cadastro">
                                 <label for="txtSenhaEntrar">Senha</label>
                                 <input type="email" class="form-control" id="txtSenhaEntrar" placeholder="" required>
                                 <div class="invalid-feedback">
@@ -156,7 +156,7 @@
                                     Crie uma senha segura, com numeros e letras.
                                 </small>
                             </div>
-                            <div class="col-md-6 mb-3" style="margin-top: 50px; margin-bottom: 30px;">
+                            <div class="col-md-6 mb-3 col-form-cadastro">
                                 <label for="txtConfirmarSenhaEntrar">Confirmar Email</label>
                                 <input type="email" class="form-control" id="txtSenhaEntrar" placeholder="" required>
                                 <div class="invalid-feedback">
