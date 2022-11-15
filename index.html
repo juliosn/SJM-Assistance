@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input class="form-control me-2" type="search" placeholder="CEP" id="cep">
+                <button class="btn btn-outline-light" onclick="consultaCep()">Buscar</button>
+    <!-- Tabela com os dados -->
+    <div class="container cep">
+        <h3 id="titulo">CEP: </h3>
+        <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Bairro</th>
+                <td id="bairro"></td>
+              </tr>
+              <tr>
+                <th scope="row">Logradouro</th>
+                <td id="logradouro"></td>
+              </tr>
+              <tr>
+                <th scope="row">Cidade</th>
+                <td id="localidade"></td>
+              </tr>
+              <tr>
+                <th scope="row">Estado</th>
+                <td id="uf"></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+  <!-- Tabela com os dados -->
+        <!-- É preciso importar primeiro o JQuery e depois o script para funcionar corretamente -->
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script><!--JQuery-->
+        <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
