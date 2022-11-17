@@ -224,6 +224,12 @@ footer{/*Rodapé do site*/
     color: #fff!important;
     width: 100px;
 }
+.btn-aceitar-pedido{
+    background: #002060!important;
+    color: #fff!important;
+    width: 150px;
+    margin-top: 20px;
+}
 
 .btn-form-entrar:hover, .btn-cadastrar:hover{
     background: #fff!important;
@@ -610,18 +616,36 @@ footer{/*Rodapé do site*/
 }
 
 .titulo-solicitar-servico, .titulo-contato{
-    margin-top: 50px;
+    margin-top: -10px;
     text-align: center;
 }
 
 .caixa-servico{
-    background: #ccc;
+    background: #e5e4e2;
     width: 100%;
-    min-height: 300px;
+    min-height: 250px;
     margin-top: 20px;
-    padding: 50px 100px;
+    padding: 20px 100px;
+    border-radius: 5px;
+    display: grid !important;
+    place-items: center;
+}
+.menu-servico{
+    width: 100%;
+    background: #e5e4e2;
+    display: flex;
+    margin-top: -60px;
+    margin-bottom: 100px;
+}
+.menu-servico .row{
+    text-align: center;
 }
 
+.link-menu-servico{
+    color: #000;
+    text-decoration: none;
+    font-size: 20px;
+}
 .caixa-servico p {
     font-size: 20px;
     line-height: 15px;

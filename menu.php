@@ -1,5 +1,4 @@
 <?php
-    session_start();
     $_SESSION['logado'] =  $_SESSION['logado'] ?? NULL;
 ?>
 <!-- NAV DO SITE: -->

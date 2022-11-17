@@ -20,6 +20,20 @@ class Cadastrar extends Conexao {
 
     private $imagemConta;
 
+    //SERVICO
+    private $idServico;
+    private $idCliente;
+    private $idFuncionario;
+    private $marca;
+    private $modelo;
+    private $descricaoProblema;
+    private $formaEnvio;
+    private $garantia;
+
+    //ACEITAR PEDIDO
+    private $dataEnvio;
+    private $mensagemFuncionario;
+
     //Metodos Set
     public function setId($string){
         $this->id = $string;
@@ -108,6 +122,76 @@ class Cadastrar extends Conexao {
         return $this->imagemConta;
     }
 
+    //SERVICO
+    //Metodos Set
+    public function setIdServico($string){
+        $this->idServico = $string;
+    }
+    public function setIdCliente($string){
+        $this->idCliente = $string;
+    }
+    public function setIdFuncionario($string){
+        $this->idFuncionario = $string;
+    }
+    public function setMarca($string){
+        $this->marca = $string;
+    }
+    public function setModelo($string){
+        $this->modelo = $string;
+    }
+    public function setDescricaoProblema($string){
+        $this->descricaoProblema = $string;
+    }
+    public function setFormaEnvio($string){
+        $this->formaEnvio = $string;
+    }
+    public function setGarantia($string){
+        $this->garantia = $string;
+    }
+
+    //Metodos Get
+    public function getIdServico(){
+        return $this->idServico;
+    }
+    public function getIdCliente(){
+        return $this->idCliente;
+    }
+    public function getIdFuncionario(){
+        return $this->idFuncionario;
+    }
+    public function getMarca(){
+        return $this->marca;
+    }
+    public function getModelo(){
+        return $this->modelo;
+    }
+    public function getDescricaoProblema(){
+        return $this->descricaoProblema;
+    }
+    public function getformaEnvio(){
+        return $this->formaEnvio;
+    }
+    public function getGarantia(){
+        return $this->garantia;
+    }
+
+    //ACEITAR PEDIDO
+
+    public function setDataEnvio(){
+        $this->dataEnvio = $string;
+    }
+    public function setMensagemFuncionario(){
+       $this->mensagemFuncionario = $string;
+    }
+
+    public function getDataEnvio(){
+        return $this->dataEnvio;
+    }
+    public function getMensagemFuncionario(){
+        return $this->mensagemFuncionario;
+    }
+
+
     public function incluir(){
         return $this->cadastrar($this->getNome(), $this->getNomeUsuario(), $this->getEmail(), $this->getsenha(), $this->getCep(), $this->getEndereco(), $this->getNumeroCasa(), $this->getComplemento(), $this->getCidade(), $this->getEstado());
     }
@@ -116,6 +200,25 @@ class Cadastrar extends Conexao {
     }
     public function alterarImagemConta(){
         return $this->atualizarImagemConta($this->getImagemConta(), $this->getId());
+    }
+
+    //SERVICO
+    public function incluirServico(){
+        return $this->agendarServico($this->getIdCliente(), $this->getMarca(), $this->getModelo(), $this->getDescricaoProblema(), $this->getformaEnvio(), $this->getGarantia());
+    }
+    public function listarServico($id){
+    	return $this->getServico($id);
+    }
+    public function statusServico($id){
+    	return $this->getStatusServico($id);
+    }
+    public function listarClienteFuncionario(){
+    	return $this->getClienteFuncionario();
+    }
+
+    //ACEITAR PEDIDO
+    public function aceitarPedido(){
+    	return $this->aceitarServico($this->getIdServico(), $this->getIdFuncionario(), $this->getDataEnvio(), $this->getMensagemFuncionario());
     }
 }
 ?>

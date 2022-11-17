@@ -68,20 +68,25 @@
                     <div class="col col-link-footer"><a class="link-footer" href="dicas.php">Placa mãe</a></div>
                 </div>
             </div>
-            <!-- ACESSO PARA AS PÁGINAS DE LOGIN E CADASTRO -->
-            <div class="col-2 col-btn-footer">
-                <div class="row">
-                    <div class="col">
-                        <a class="btn btn-entrar-footer" href="entrar.php">Entrar</a>
+
+            <?php
+                $logado =  $_SESSION['logado'] ?? NULL;//pega sessão que verifica se o usuario esta logado ou nao
+                if(!$logado){//caso o usuaio esteja logado manda redreciona para a pagina principal ?>
+                    <!-- ACESSO PARA AS PÁGINAS DE LOGIN E CADASTRO -->
+                    <div class="col-2 col-btn-footer">
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-entrar-footer" href="entrar.php">Entrar</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-cadastro-footer" href="cadastro.php">Cadastre-se</a></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <a class="btn btn-cadastro-footer" href="cadastro.php">Cadastre-se</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <?php  } ?>
         <div class="row">
             <div class="col">
                 <div class="container">

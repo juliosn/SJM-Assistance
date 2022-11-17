@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -85,6 +88,8 @@
             </div>
         </div>
         <!-- MENU PARA CELULAR -->
+        
+        <a href="model/conexao.php?funcao=listar">OLa</a>
         <div class="container">
             <div class="marcas-parceiras">
                 <h1 class="title-marca">Confira Marcas Parceiras</h1>
@@ -193,19 +198,25 @@
 
         <button style="display: none;" type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
 
-        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img src="img/SJM.png" height="20px" class="rounded me-2" alt="...">
-                    <strong class="me-auto" style="font-size:16px;">SJM</strong>
-                    <small>Agora</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body" style="font-size:16px;">
-                    Crie sua conta <a href="cadastro.php">aqui!</a> Ou entre por <a href="entrar.php">aqui!</a>
+
+        <?php
+            $logado =  $_SESSION['logado'] ?? NULL;//pega sessão que verifica se o usuario esta logado ou nao
+            if(!$logado){//caso o usuaio esteja logado manda redreciona para a pagina principal ?>
+                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="img/SJM.png" height="20px" class="rounded me-2" alt="...">
+                        <strong class="me-auto" style="font-size:16px;">SJM</strong>
+                        <small>Agora</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body" style="font-size:16px;">
+                        Crie sua conta <a href="cadastro.php">aqui!</a> Ou entre por <a href="entrar.php">aqui!</a>
+                    </div>
                 </div>
             </div>
-        </div>
+          <?php  }
+        ?>
     </main>
 
     <script>

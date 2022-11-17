@@ -62,7 +62,6 @@
         </div>
         <!-- MENU PARA CELULAR -->
         <div class="container container-sobre">
-            <?php echo $_SESSION['novoEmail']; ?>
             <?php
                 if(isset($_GET['alterarImagem']) && $_GET['alterarImagem'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
                     <div class="div-mensagem-conta-criada-sucess">
