@@ -31,46 +31,6 @@
             <div class="row"><a class="link-menu-servico" href="servico.php?servico=solicitarServico">Solicitar Novo Serviço</a></div>
         </div>
     <main>
-        <!-- MENU PARA CELULAR -->
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header" style="background: #002060; color: #fff">
-                <button type="button" style="background: transparent; border:0; color: #fff" data-bs-dismiss="offcanvas">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
-                </button>
-                <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body" style="background: #002060;">
-                <div class=" navbar-dark">
-                    <a class="navbar-brand logo-menu-celular" href="index.php "><img src="img/logo-nome-grande.png" height="200" alt="" srcset=""></a>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="servico.php">Serviços</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contato.php">Contato</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="sobre.php">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dicas.php">Dicas</a>
-                        </li>
-                    </ul>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col col-btn-celular">
-                            <a class="btn btn-entrar-footer" href="entrar.php">Entrar</a>
-                        </div>
-                        <div class="col col-btn-celular">
-                            <a class="btn btn-cadastro-footer" href="cadastro.php">Cadastre-se</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MENU PARA CELULAR -->
         <div class="container container-servico">
             <?php
                 if(isset($_GET['servico']) && $_GET['servico'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
@@ -93,6 +53,50 @@
                         </div><!-- Sucesso -->
                     </div>
             <?php } ?>
+
+            <?php
+                if(isset($_GET['confirmarPedido']) && $_GET['confirmarPedido'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
+                    <div class="div-mensagem-conta-criada-sucess">
+                        <!-- MENSAGEM DE CONTA CRIADA -->
+                        <div class="alert alerta-conta-success alert-success alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <strong>Serviço confirmado!</strong> Fique de olho na data para a entrega do notebook.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div><!-- Sucesso -->
+                    </div>
+               <?php }elseif(isset($_GET['confirmarPedido']) && $_GET['confirmarPedido'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
+
+                    <div class="div-mensagem-conta-criada-danger">
+                        <!-- MENSAGEM DE CONTA NÃO CRIADA -->
+                        <div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <strong>Não foi possivel confirmar o pedido!</strong> Tente novamente mais tarde.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div><!-- Sucesso -->
+                    </div>
+            <?php } ?>
+
+            <?php
+                if(isset($_GET['cancelarPedido']) && $_GET['cancelarPedido'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
+                    <div class="div-mensagem-conta-criada-sucess">
+                        <!-- MENSAGEM DE CONTA CRIADA -->
+                        <div class="alert alerta-conta-success alert-success alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <strong>Serviço cancelado!</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div><!-- Sucesso -->
+                    </div>
+               <?php }elseif(isset($_GET['cancelarPedido']) && $_GET['cancelarPedido'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
+
+                    <div class="div-mensagem-conta-criada-danger">
+                        <!-- MENSAGEM DE CONTA NÃO CRIADA -->
+                        <div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <strong>Não foi possivel cancelar o pedido!</strong> Tente novamente mais tarde.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div><!-- Sucesso -->
+                    </div>
+            <?php } ?>
             
             <?php if(isset($_GET['servico']) && $_GET['servico']  == 'meuServico'){ ?>
                 <h1 class="titulo-servico">Meus Serviços Solicitados</h1>
@@ -100,7 +104,7 @@
                     $controller = new Controller();
                     $resultado = $controller->listarServico($_SESSION['id']);
                     $resultadoStatusPedido = $controller->statusServico($_SESSION['id']);
-                    //print_r($resultado);
+                    //print_r($resultadoStatusPedido);
                     for($i=0;$i<count($resultado);$i++){ 
                 ?>
 
@@ -133,16 +137,30 @@
                                         <div class="col col-caixa-servico">
                                             <h3>Status do pedido:</h3>
                                             <?php if(isset($resultadoStatusPedido[$i]['idFuncionario']) != 0){ ?>
-                                                <p><?php echo $resultadoStatusPedido[$i]['statusServico']; ?></p>
+                                                <?php 
+                                                    if($resultadoStatusPedido[$i]['statusServico'] == "Confirmado pelo usuário"){
+                                                        echo "<p style='color: #198754'>Aguardando envio do notebook</p>";
+                                                    }else{
+                                                        if(substr($resultadoStatusPedido[$i]['statusServico'], 0, 9) == "Cancelado"){
+                                                            echo "<p style='color: #dc3545;'>" . $resultadoStatusPedido[$i]['statusServico'] . "</p>";
+                                                        }else{
+                                                            echo "<p style='color: #198754'>" . $resultadoStatusPedido[$i]['statusServico'] . "</p>";
+                                                        }
+                                                    }
+                                                ?>
                                                 <p>Data da realização do pedido: <?php echo $resultado[$i]['dataServico']; ?></p>
                                                 <?php
-                                                    if($resultado[$i]['formaEnvio'] == "levarAparelho"){
-                                                        echo "<p>Enviar aparelho até a loja dia {$resultadoStatusPedido[$i]['dataLevarNotebook']}</p>";
-                                                    }else if($resultado[$i]['formaEnvio'] == "EnviarCorreio"){
-                                                        echo "<p>Enviar aparelho pelo Correio {$resultadoStatusPedido[$i]['dataLevarNotebook']}</p>";
-                                                    }else if($resultado[$i]['formaEnvio'] == "ReceberTecnico"){
-                                                        $formaEnvio = "Receber técnico em casa";
-                                                        echo "<p>Receber técnico em casa {$resultadoStatusPedido[$i]['dataLevarNotebook']}</p>";
+                                                    if($resultadoStatusPedido[$i]['statusServico'] != "Cancelado" && $resultadoStatusPedido[$i]['idFuncionario'] != 0){
+                                                        if($resultado[$i]['formaEnvio'] == "levarAparelho"){
+                                                            echo "<p>Enviar aparelho até a loja dia {$resultadoStatusPedido[$i]['dataLevarNotebook']}</p>";
+                                                        }else if($resultado[$i]['formaEnvio'] == "EnviarCorreio"){
+                                                            echo "<p>Enviar aparelho pelo Correio {$resultadoStatusPedido[$i]['dataLevarNotebook']}</p>";
+                                                        }else if($resultado[$i]['formaEnvio'] == "ReceberTecnico"){
+                                                            $formaEnvio = "Receber técnico em casa";
+                                                            echo "<p>Receber técnico em casa {$resultadoStatusPedido[$i]['dataLevarNotebook']}</p>";
+                                                        } 
+                                                    }else{
+                                                        echo "<p class='text-servico'>Seu pedido ainda está sendo avaliado e será aceito por um funcionario</p>";
                                                     }
                                                 ?>
                                                 <?php if($resultadoStatusPedido[$i]['mensagemFuncionario'] != ""){ ?>
@@ -154,13 +172,35 @@
                                             <?php }else{ ?>
                                                 <p>Em analise</p>
                                             <?php }?>
+                                            <form action="" method="POST">
+                                                <?php if($resultadoStatusPedido[$i]['statusServico'] == "Confirmado pelo funcionario"){ ?>
+                                                    <button class="btn btn-confirmar-pedido" name="btnConfirmarPedido" id="btnConfirmarPedido">Confirmar Pedido</button>
+                                                <?php } ?>
+                                                <?php if($resultadoStatusPedido[$i]['statusServico'] != "Cancelado pelo usuário" && substr($resultadoStatusPedido[$i]['statusServico'], 0, 9) != "Cancelado"){ ?>
+                                                    <button class="btn btn-cancelar-pedido" name="btnCancelarPedido" id="btnCancelarPedido">Cancelar Pedido</button>
+                                                <?php } ?>
+                                            </form>
+
+                                            <?php 
+                                            $idStatusServico = $resultadoStatusPedido[$i]['idStatusPedido'];
+                                                extract($_POST, EXTR_OVERWRITE);
+                                                if(isset($btnConfirmarPedido)){
+                                                    $statusServico = "Confirmado pelo usuário";
+                                                    $confirmarPedido = $controller->atualizarPedido($statusServico);
+                                                }elseif(isset($btnCancelarPedido)){
+                                                    $_POST['txtStatusServico'] = "Cancelado pelo usuário";
+                                                    $statusPedido = "Cancelado pelo usuário";
+                                                    $cancelarPedido = $controller->atualizarPedido($statusPedido);
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                <?php
-                    } 	?>
+                    <?php 
+                        }
+                    ?>
                     </div>
                 </div>
                 

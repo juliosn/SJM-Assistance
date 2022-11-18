@@ -22,46 +22,6 @@
         <?php include_once "menu.php" ?>
     </header>
     <main style="display: flex; align-items: center; min-height: 80vh">
-        <!-- MENU PARA CELULAR -->
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header" style="background: #002060; color: #fff">
-                <button type="button" style="background: transparent; border:0; color: #fff" data-bs-dismiss="offcanvas">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
-                </button>
-                <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body" style="background: #002060;">
-                <div class=" navbar-dark">
-                    <a class="navbar-brand logo-menu-celular" href="index.php "><img src="img/logo-nome-grande.png" height="200" alt="" srcset=""></a>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="servico.php">Serviços</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contato.php">Contato</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="sobre.php">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dicas.php">Dicas</a>
-                        </li>
-                    </ul>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col col-btn-celular">
-                            <a class="btn btn-entrar-footer" href="entrar.php">Entrar</a>
-                        </div>
-                        <div class="col col-btn-celular">
-                            <a class="btn btn-cadastro-footer" href="cadastro.php">Cadastre-se</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MENU PARA CELULAR -->
 
         <!-- icone da mensagem de recuperação de senha -->
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -80,7 +40,7 @@
         
 
         <div class="container container-entrar">
-            <?php
+            <?php //MENSAGEM DE ERRO CASO A CONTA ESTEJA DESATIVADO
                 if(isset($_GET['cad']) && $_GET['cad'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
                     <div class="div-mensagem-conta-criada-sucess">
                         <!-- MENSAGEM DE CONTA CRIADA -->
@@ -101,12 +61,25 @@
                         </div><!-- Sucesso -->
                     </div>
             <?php }
+             //MENSAGEM DE ERRO CASO NÃO ENCONTRE NENHUMA CONTA
             if (isset($_GET['entrar']) && $_GET['entrar'] == 'semConta'){//caso os dados nao confiram com a base de dados ?>
                 <div class="div-mensagem-sem-conta">
                     <!-- MENSAGEM DE CONTA NÃO CRIADA -->
                     <div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                         <strong>Não foi possivel entrar com sua conta!</strong> Verifique seu email e senha ou tente novamente mais tarde.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div><!-- Sucesso -->
+                </div>
+           <?php } ?>
+
+           <?php //MENSAGEM DE ERRO CASO A CONTA ESTEJA DESATIVADO
+            if (isset($_GET['contaDesativado']) && $_GET['contaDesativado'] == 'true'){//caso os dados nao confiram com a base de dados ?>
+                <div class="div-mensagem-sem-conta">
+                    <!-- MENSAGEM DE CONTA NÃO CRIADA -->
+                    <div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:150px;" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                        <strong>Sua conta foi desativada!</strong> entre em contato a nossa loja para mais informações.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div><!-- Sucesso -->
                 </div>

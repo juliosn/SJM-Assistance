@@ -26,46 +26,6 @@
         <?php include_once "menu.php"; ?>
     </header>
     <main>
-        <!-- MENU PARA CELULAR -->
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header" style="background: #002060; color: #fff">
-                <button type="button" style="background: transparent; border:0; color: #fff" data-bs-dismiss="offcanvas">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
-                </button>
-                <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body" style="background: #002060;">
-                <div class=" navbar-dark">
-                    <a class="navbar-brand logo-menu-celular" href="index.php "><img src="img/logo-nome-grande.png" height="200" alt="" srcset=""></a>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="servico.php">Serviços</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contato.php">Contato</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="sobre.php">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dicas.php">Dicas</a>
-                        </li>
-                    </ul>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col col-btn-celular">
-                            <a class="btn btn-entrar-footer" href="entrar.php">Entrar</a>
-                        </div>
-                        <div class="col col-btn-celular">
-                            <a class="btn btn-cadastro-footer" href="cadastro.php">Cadastre-se</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MENU PARA CELULAR -->
         <div class="container container-servico">
             <?php
                 if(isset($_GET['servico']) && $_GET['servico'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
@@ -95,8 +55,10 @@
                     $resultadoServico = $controller->listarServico(0);
                     $resultadoStatusServico = $controller->statusServico(0);
                     $resultadoCliente = $controller->listarClienteFuncionario();
+                    $resultadoFuncionario = $controller->listarFuncionario(0);
                     //print_r($resultadoServico); echo "<br>";
                     //print_r($resultadoCliente);echo "<br>";
+                    //print_r($resultadoFuncionario);echo "<br>";
                     for($i=0;$i<count($resultadoServico);$i++){ 
                 ?>
 
@@ -130,13 +92,67 @@
                                         </div>
                                         <div class="col col-caixa-servico">
                                             <h3>Status do pedido:</h3>
-                                            <?php if($resultadoStatusServico[$i]['statusServico'] ==""){ ?>
-                                                <form action="controller/Controller.php?funcao=aceitarPedido" method="post">
+                                            <?php if($resultadoStatusServico[$i]['statusServico'] == ""){  ?>
+                                                <form action="" method="POST">
                                                     <input type="text" name="idServico" id="idServico" value=" <?php echo $resultadoStatusServico[$i]['idServico']; ?>" style="display:none">
-                                                    <input type="text" class="form-control" id="txtDataEnvio" name="txtDataEnvio" placeholder="Data para enviar produto" required select>
-                                                    <textarea class="form-control textarea-descricao-problema" id="txtMensagemFuncionario" name="txtMensagemFuncionario" required placeholder="Mensagem para o cliente"></textarea>
-                                                    <button class="btn btn-aceitar-pedido" type="submit">Aceitar Pedido</button>
+                                                    <input type="text" class="form-control" id="txtDataEnvio" name="txtDataEnvio" placeholder="Data para enviar produto ou motivo pelo cancelamento" required select>
+                                                    <textarea class="form-control textarea-descricao-problema" id="txtMensagemFuncionario" name="txtMensagemFuncionario" placeholder="Mensagem opcional para o cliente"></textarea>
+                                                    <button class="btn btn-aceitar-pedido" id="btnAceitarPedido" name="btnAceitarPedido" type="submit">Aceitar Pedido</button>
+                                                    <button class="btn btn-nao-aceitar-pedido" name="btnNaoAceitar" id="btnNaoAceitar">Não Aceitar Pedido</button>
+                                            </form>
+                                            <?php }else{ ?>
+                                                <?php
+                                                    if($resultadoStatusServico[$i]['idFuncionario'] != 0){ 
+                                                        if($resultadoStatusServico[$i]['statusServico'] == "Cancelado pelo funcionario"){
+                                                ?>
+                                                            <p style="color: #dc3545">Pedido cancelado por: <?php echo $resultadoFuncionario[$resultadoStatusServico[$i]['idFuncionario'] -1]['nome']; ?></p>
+                                                <?php  
+                                                        }elseif($resultadoStatusServico[$i]['statusServico'] == "Cancelado pelo usuário"){ ?>
+                                                            <p style="color: #dc3545">Pedido cancelado pelo usuário</p>
+                                                <?php   }else{ ?>
+                                                    <p style="color: #198754">Pedido aceito por: <?php echo $resultadoFuncionario[$resultadoStatusServico[$i]['idFuncionario'] -1]['nome']; ?></p>
+                                                <?php
+                                                        }
+                                                ?>
+
+                                                <?php } ?>
+                                                <form action="" method="POST">
+                                                    <?php  
+                                                         if(isset($resultadoStatusServico[$i]['statusServico']) && substr($resultadoStatusServico[$i]['statusServico'], 0, 9) == "Cancelado"){
+                                                            $disabled = "disabled";
+                                                        }else{ 
+                                                            $disabled = "";
+                                                     } ?>
+                                                    <input <?php echo $disabled; ?> type="text" name="idServico" id="idServico" value=" <?php echo $resultadoStatusServico[$i]['idServico']; ?>" style="display:none">
+                                                    <input <?php echo $disabled; ?> type="text" class="form-control" id="txtStatusServico" name="txtStatusServico" placeholder="Status do Pedido" required value="<?php echo $resultadoStatusServico[$i]['statusServico']; ?>" select>
+                                                    <input <?php echo $disabled; ?> type="text" class="form-control" id="txtDataEnvio" name="txtDataEnvio" placeholder="Data para enviar produto ou motivo pelo cancelamento"  style="margin-top:10px" required value="<?php echo $resultadoStatusServico[$i]['dataLevarNotebook']; ?>" select>
+                                                    <textarea <?php echo $disabled; ?> class="form-control textarea-descricao-problema" id="txtMensagemFuncionario" name="txtMensagemFuncionario" required placeholder="Mensagem para o cliente"><?php echo $resultadoStatusServico[$i]['mensagemFuncionario']; ?></textarea>
+                                                    <?php if($resultadoStatusServico[$i]['statusServico'] != "Cancelado pelo usuário" && $resultadoStatusServico[$i]['statusServico'] != "Cancelado pelo funcionario"){ ?>
+                                                        <button class="btn btn-aceitar-pedido" name="btnAtualizar" id="btnAtualizar" type="submit">Atualizar Pedido</button> 
+                                                        <button class="btn btn-nao-aceitar-pedido" name="btnCancelar" id="btnCancelar" type="submit">Cancelar Pedido</button> 
+                                                    <?php } ?>
                                                 </form>
+
+                                                <?php 
+                                                    $idStatusServico = $resultadoStatusServico[$i]['idStatusPedido'];
+                                                    extract($_POST, EXTR_OVERWRITE);
+                                                    if(isset($btnAceitarPedido)){
+                                                        $statusServico = "Confirmado pelo funcionario";
+                                                        $confirmarPedido = $controller->atualizarPedido($statusServico);
+                                                    }elseif(isset($btnNaoAceitar)){
+                                                        $_POST['txtStatusServico'] = "Cancelado pelo funcionario";
+                                                        $statusPedido = "Cancelado pelo funcionario";
+                                                        $cancelarPedido = $controller->atualizarPedido($statusPedido);
+                                                    }
+
+                                                    if(isset($btnAtualizar)){
+                                                        $confirmarPedido = $controller->atualizarPedido($statusServico);
+                                                    }elseif(isset($btnCancelar)){
+                                                        $_POST['txtStatusServico'] = "Cancelado pelo funcionario";
+                                                        $statusPedido = "Cancelado pelo funcionario";
+                                                        $cancelarPedido = $controller->atualizarPedido($statusPedido);
+                                                    }
+                                                ?>
                                             <?php } ?>
                                         </div>
                                     </div>

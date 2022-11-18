@@ -31,6 +31,7 @@ class Cadastrar extends Conexao {
     private $garantia;
 
     //ACEITAR PEDIDO
+    private $idStatusServico;
     private $dataEnvio;
     private $mensagemFuncionario;
 
@@ -177,11 +178,17 @@ class Cadastrar extends Conexao {
 
     //ACEITAR PEDIDO
 
-    public function setDataEnvio(){
+    public function setDataEnvio($string){
         $this->dataEnvio = $string;
     }
-    public function setMensagemFuncionario(){
+    public function setMensagemFuncionario($string){
        $this->mensagemFuncionario = $string;
+    }
+    public function setStatusPedido($string){
+       $this->statusPedido = $string;
+    }
+    public function setIdStatusServico($string){
+       $this->idStatusServico = $string;
     }
 
     public function getDataEnvio(){
@@ -189,6 +196,12 @@ class Cadastrar extends Conexao {
     }
     public function getMensagemFuncionario(){
         return $this->mensagemFuncionario;
+    }
+    public function getStatusPedido(){
+        return $this->statusPedido;
+    }
+    public function getIdStatusServico(){
+        return $this->idStatusServico;
     }
 
 
@@ -210,15 +223,36 @@ class Cadastrar extends Conexao {
     	return $this->getServico($id);
     }
     public function statusServico($id){
-    	return $this->getStatusServico($id);
+    	return $this->listarStatusServico($id);
     }
     public function listarClienteFuncionario(){
     	return $this->getClienteFuncionario();
     }
 
     //ACEITAR PEDIDO
-    public function aceitarPedido(){
-    	return $this->aceitarServico($this->getIdServico(), $this->getIdFuncionario(), $this->getDataEnvio(), $this->getMensagemFuncionario());
+    public function atualizarPedido(){
+    	return $this->atualizarServico($this->getIdServico(), $this->getIdFuncionario(), $this->getStatusPedido(), $this->getDataEnvio(), $this->getMensagemFuncionario());
+    }
+    public function listarFuncionario($id){
+    	return $this->exibirFuncionario($id);
+    }
+
+    public function confirmarPedido(){
+        return $this->verificarPedido($this->getIdStatusServico());
+    }
+    public function cancelarPedidoUsuario(){
+        return $this->cancelarServicoUsuario($this->getIdStatusServico());
+    }
+    public function cancelarPedidoFuncionario(){
+        return $this->cancelarServicoFuncionario($this->getIdServico(), $this->getStatusPedido());
+    }
+
+    // FUNCIONARIO ADMINISTRADOR
+    public function excluirConta($id, $conta, $nomeFuncionario){
+        return $this->apagarConta($id, $conta, $nomeFuncionario);
+    }
+    public function recuperarConta($id, $conta, $nomeFuncionario){
+        return $this->voltarConta($id, $conta, $nomeFuncionario);
     }
 }
 ?>

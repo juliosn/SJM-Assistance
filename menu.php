@@ -23,15 +23,30 @@
                         <a class="nav-link" href="entrar.php">Serviços</a>
                     </li>
                 <?php } ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="contato.php">Contato</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="sobre.php">Sobre</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="dicas.php">Dicas</a>
-                </li>
+                <?php if(empty($_SESSION['funcionario']) || $_SESSION['funcionario'] == False){ // caso seja um cliente, mostrar pagina de contato e sobre ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.php">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre.php">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dicas.php">Dicas</a>
+                    </li>
+                <?php }else{ //caso seja um funcionario, motrar consulta e cadastrar funcionario ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Consulta
+                        </a>
+                        <ul class="dropdown-menu">
+                            <a class="dropdown-item" href="consulta.php?consulta=cliente">Clientes</a>
+                            <a class="dropdown-item" href="consulta.php?consulta=funcionario">Funcionario</a>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="consulta.php">Funcionario</a>
+                    </li>
+                    <?php } ?>
             </ul>
             </div>
             <div class="nome-nav">
@@ -76,3 +91,63 @@
         </div>
     </div>
 </nav>
+
+
+
+<!-- MENU PARA CELULAR -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header" style="background: #002060; color: #fff">
+        <button type="button" style="background: transparent; border:0; color: #fff" data-bs-dismiss="offcanvas">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+        </button>
+        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" style="background: #002060;">
+        <div class=" navbar-dark">
+            <a class="navbar-brand logo-menu-celular" href="index.php "><img src="img/logo-nome-grande.png" height="200" alt="" srcset=""></a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                </li>
+                <?php if($_SESSION['logado']){  ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servico.php">Serviços</a>
+                    </li>
+                <?php } ?>
+                <?php if(empty($_SESSION['funcionario']) || $_SESSION['funcionario'] == False){ // caso seja um cliente, mostrar pagina de contato e sobre ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="contato.php">Contato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sobre.php">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dicas.php">Dicas</a>
+                </li>
+                <?php }else{ //caso seja um funcionario, motrar consulta e cadastrar funcionario ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Consulta
+                        </a>
+                        <ul class="dropdown-menu">
+                            <a class="dropdown-item" href="consulta.php?consulta=cliente">Clientes</a>
+                            <a class="dropdown-item" href="consulta.php?consulta=funcionario">Funcionario</a>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="consulta.php">Funcionario</a>
+                    </li>
+                    <?php } ?>
+            </ul>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col col-btn-celular">
+                    <a class="btn btn-entrar-footer" href="entrar.php">Entrar</a>
+                </div>
+                <div class="col col-btn-celular">
+                    <a class="btn btn-cadastro-footer" href="cadastro.php">Cadastre-se</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MENU PARA CELULAR -->
