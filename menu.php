@@ -14,15 +14,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                 </li>
-                <?php if($_SESSION['logado']){  ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="servico.php">Serviços</a>
-                    </li>
-                <?php }else{ ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="entrar.php">Serviços</a>
-                    </li>
-                <?php } ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="servico.php">Serviços</a>
+                </li>
                 <?php if(empty($_SESSION['funcionario']) || $_SESSION['funcionario'] == False){ // caso seja um cliente, mostrar pagina de contato e sobre ?>
                     <li class="nav-item">
                         <a class="nav-link" href="contato.php">Contato</a>
@@ -33,7 +27,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="dicas.php">Dicas</a>
                     </li>
-                <?php }else{ //caso seja um funcionario, motrar consulta e cadastrar funcionario ?>
+                <?php }else{ //caso seja um funcionario, motrar consulta e cadastrar funcionario 
+                    if($_SESSION['permissoes'] == "todas"){ ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Consulta
@@ -41,12 +36,13 @@
                         <ul class="dropdown-menu">
                             <a class="dropdown-item" href="consulta.php?consulta=cliente">Clientes</a>
                             <a class="dropdown-item" href="consulta.php?consulta=funcionario">Funcionario</a>
+                            <a class="dropdown-item" href="consulta.php?consulta=servico">Serviços</a>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="consulta.php">Funcionario</a>
+                        <a class="nav-link" href="cadastrarFuncionario.php">Funcionario</a>
                     </li>
-                    <?php } ?>
+                <?php } } ?>
             </ul>
             </div>
             <div class="nome-nav">
@@ -91,7 +87,7 @@
         </div>
     </div>
 </nav>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
 <!-- MENU PARA CELULAR -->
@@ -104,16 +100,18 @@
     </div>
     <div class="offcanvas-body" style="background: #002060;">
         <div class=" navbar-dark">
-            <a class="navbar-brand logo-menu-celular" href="index.php "><img src="img/logo-nome-grande.png" height="200" alt="" srcset=""></a>
+            <?php if(isset($_SESSION['logado'])){ ?>
+                <a class="navbar-brand logo-menu-celular" href="conta.php "><img class="img-conta-menu-cel" src="img/imgConta/<?php echo $_SESSION['imgConta'] ?>" height="200" alt="" srcset=""></a>
+            <?php  }else{ ?>
+                <a class="navbar-brand logo-menu-celular" href="index.php "><img src="img/logo-nome-grande.png" height="200" alt="" srcset=""></a>
+            <?php } ?>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                 </li>
-                <?php if($_SESSION['logado']){  ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="servico.php">Serviços</a>
-                    </li>
-                <?php } ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="servico.php">Serviços</a>
+                </li>
                 <?php if(empty($_SESSION['funcionario']) || $_SESSION['funcionario'] == False){ // caso seja um cliente, mostrar pagina de contato e sobre ?>
                 <li class="nav-item">
                     <a class="nav-link" href="contato.php">Contato</a>
@@ -132,13 +130,22 @@
                         <ul class="dropdown-menu">
                             <a class="dropdown-item" href="consulta.php?consulta=cliente">Clientes</a>
                             <a class="dropdown-item" href="consulta.php?consulta=funcionario">Funcionario</a>
+                            <a class="dropdown-item" href="consulta.php?consulta=servico">Serviços</a>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="consulta.php">Funcionario</a>
+                        <a class="nav-link" href="cadastrarFuncionario.php">Funcionario</a>
                     </li>
-                    <?php } ?>
-            </ul>
+            <?php } ?>
+            <?php if(isset($_SESSION['logado'])){  ?>
+                <li class="nav-item">
+                    <p class="nav-link nav-login-cel" href="dicas.php"><?php echo $_SESSION['login']; ?></p>
+                </li>
+                <li class="nav-item">
+                    <a href="controller/Controller.php?funcao=sair" class="nav-link nav-login-cel" href="dicas.php">Sair</a>
+                </li>
+            <?php } ?>
+        <?php if(!$_SESSION['logado']){  //aparecer botao para entrar e para cadastrar caso ele nao esteja logado ?>
             <div class="row" style="margin-top: 20px;">
                 <div class="col col-btn-celular">
                     <a class="btn btn-entrar-footer" href="entrar.php">Entrar</a>
@@ -148,6 +155,9 @@
                 </div>
             </div>
         </div>
+        <?php } ?>
+
     </div>
+</div>
 </div>
 <!-- MENU PARA CELULAR -->

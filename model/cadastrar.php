@@ -35,6 +35,14 @@ class Cadastrar extends Conexao {
     private $dataEnvio;
     private $mensagemFuncionario;
 
+    //CADASTRAR FUNCIONARIO
+    private $cargo;
+    private $permissoes;
+
+    //RECUPERACAO DE SENHA
+    private $emailRecuperacao;
+    private $codVerificacao;
+
     //Metodos Set
     public function setId($string){
         $this->id = $string;
@@ -204,19 +212,51 @@ class Cadastrar extends Conexao {
         return $this->idStatusServico;
     }
 
+    //CADASTRAR FUNCIONARIO
+    public function setCargo($string){
+        $this->cargo = $string;
+     }
+    public function getPermissoes(){
+        return $this->permissoes;
+    }
 
-    public function incluir(){
+    public function setPermissoes($string){
+        $this->permissoes = $string;
+     }
+     
+    public function getCargo(){
+        return $this->cargo;
+    }
+
+    //RECUPERACAO DE SENHA
+    public function setEmailRecuperacao($string){
+        $this->emailRecuperacao = $string;
+     }
+     
+    public function getEmailRecuperacao(){
+        return $this->emailRecuperacao;
+    }
+
+    public function setCodVerificacao($string){
+        $this->codVerificacao = $string;
+     }
+     
+    public function getCodVerificacao(){
+        return $this->codVerificacao;
+    }
+
+    public function incluir(){//funcao para cadastrar cliente
         return $this->cadastrar($this->getNome(), $this->getNomeUsuario(), $this->getEmail(), $this->getsenha(), $this->getCep(), $this->getEndereco(), $this->getNumeroCasa(), $this->getComplemento(), $this->getCidade(), $this->getEstado());
     }
-    public function logar(){
+    public function logar(){//funcao para fazer o login
         return $this->entrar($this->getEmailLogin(), $this->getSenhaLogin());
     }
-    public function alterarImagemConta(){
+    public function alterarImagemConta(){//funcao para mudar imagem da conta
         return $this->atualizarImagemConta($this->getImagemConta(), $this->getId());
     }
 
     //SERVICO
-    public function incluirServico(){
+    public function incluirServico(){//funcao para o cliente fazer o pedido de um servico
         return $this->agendarServico($this->getIdCliente(), $this->getMarca(), $this->getModelo(), $this->getDescricaoProblema(), $this->getformaEnvio(), $this->getGarantia());
     }
     public function listarServico($id){
@@ -225,8 +265,11 @@ class Cadastrar extends Conexao {
     public function statusServico($id){
     	return $this->listarStatusServico($id);
     }
-    public function listarClienteFuncionario(){
-    	return $this->getClienteFuncionario();
+    public function statusServicoFuncionario($id){
+    	return $this->listarServicoFuncionario($id);
+    }
+    public function listarClienteFuncionario($id){
+    	return $this->getClienteFuncionario($id);
     }
 
     //ACEITAR PEDIDO
@@ -243,16 +286,43 @@ class Cadastrar extends Conexao {
     public function cancelarPedidoUsuario(){
         return $this->cancelarServicoUsuario($this->getIdStatusServico());
     }
-    public function cancelarPedidoFuncionario(){
-        return $this->cancelarServicoFuncionario($this->getIdServico(), $this->getStatusPedido());
+    public function confirmarPedidoUsuario(){
+        return $this->aceitarPedidoUsuario($this->getIdStatusServico());
+    }
+    public function cancelarPedidoFuncionario($idFuncionario){
+        return $this->cancelarServicoFuncionario($this->getIdStatusServico(), $idFuncionario, $this->getDataEnvio(), $this->getMensagemFuncionario(), $this->getIdServico());
+    }
+    public function confirmadoPeloFuncionario($idFuncionario){
+        return $this->confirmarPeloFuncionario($this->getIdStatusServico(), $idFuncionario, $this->getDataEnvio(), $this->getMensagemFuncionario(), $this->getIdServico());
     }
 
     // FUNCIONARIO ADMINISTRADOR
-    public function excluirConta($id, $conta, $nomeFuncionario){
+    public function excluirConta($id, $conta, $nomeFuncionario){//permite administrador desativar conta
         return $this->apagarConta($id, $conta, $nomeFuncionario);
     }
-    public function recuperarConta($id, $conta, $nomeFuncionario){
+    public function recuperarConta($id, $conta, $nomeFuncionario){//permite  administrador ativar conta
         return $this->voltarConta($id, $conta, $nomeFuncionario);
+    }
+    public function cadastrarFuncionario(){//permite administrador cadastrar funcionario
+        return $this->incluirFuncionario($this->getNome(), $this->getCargo(), $this->getEmail(), $this->getSenha(), $this->getPermissoes());
+    }
+
+    public function atualizarConta($conta){
+        if($conta == "cliente"){//atualizar conta do cliente
+            return $this->updateContaCliente($_SESSION['id'], $this->getNome(), $this->getNomeUsuario(), $this->getEmail(), $this->getsenha(), $this->getCep(), $this->getEndereco(), $this->getNumeroCasa(), $this->getComplemento(), $this->getCidade(), $this->getEstado());
+        }else{//atualizar conta do funcionario
+            return $this->updateContaFuncionario($_SESSION['idFuncionario'], $this->getNome(), $this->getCargo(), $this->getEmail(), $this->getsenha(), $this->getPermissoes());
+        }
+    }
+
+    //RECUPERACAO DE SENHA
+    public function esqueciSenha(){//funcao para enviar um codigo de verificacao e recuperar senha
+        return $this->enviarCodEmail($this->getEmailRecuperacao(), $this->getCodVerificacao());
+    }
+
+    //FUNCAO PRO ADMINISTRADOR ATUALIZAR CONTA DO FUNCIONARIO
+    public function atualizarContaFuncionario($id, $cargo, $permissoes){
+        return $this->updateContaFuncionarioAdm($id, $cargo, $permissoes);
     }
 }
 ?>

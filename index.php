@@ -8,17 +8,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJM Assistance - Contato</title>
+    <title>SJM Assistance</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <script src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="img/SJM.png" type="image/x-icon">
 </head>
 <body>
     <header>
-        <?php include_once "menu.php" ?>
+        <?php include_once "menu.php" ?><!-- Chama arquivo menu para adicionar menu -->
         <div class="container">
-            <!-- Carrossel de imagens: -->
+            <!-- Carrossel de imagens -->
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -48,49 +50,7 @@
             </div>
     </header>
     <main>
-        <!-- MENU PARA CELULAR -->
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header" style="background: #002060; color: #fff">
-                <button type="button" style="background: transparent; border:0; color: #fff" data-bs-dismiss="offcanvas">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
-                </button>
-                <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body" style="background: #002060;">
-                <div class=" navbar-dark">
-                    <a class="navbar-brand logo-menu-celular" href="index.php "><img src="img/logo-nome-grande.png" height="200" alt="" srcset=""></a>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="servico.php">Serviços</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contato.php">Contato</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="sobre.php">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dicas.php">Dicas</a>
-                        </li>
-                    </ul>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col col-btn-celular">
-                            <a class="btn btn-entrar-footer" href="entrar.php">Entrar</a>
-                        </div>
-                        <div class="col col-btn-celular">
-                            <a class="btn btn-cadastro-footer" href="cadastro.php">Cadastre-se</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MENU PARA CELULAR -->
-        
-        <a href="model/conexao.php?funcao=listar">OLa</a>
-        <div class="container">
+        <div class="container"><!-- Marcas Parceiras -->
             <div class="marcas-parceiras">
                 <h1 class="title-marca">Confira Marcas Parceiras</h1>
                 <div class="row">
@@ -138,94 +98,92 @@
             </div>
             <hr>
         </div>
-            <div class="opnioes container">
-                <div class="row">
-                    <div class="col">
-                        <h1 class="title-marca">Tipos de Serviço</h1>
-                    </div>
+
+        <div class="opnioes container"><!-- Tipos de Serviços -->
+            <div class="row">
+                <div class="col">
+                    <h1 class="title-marca">Tipos de Serviço</h1>
                 </div>
-                <div class="row div-servico">
-                    <div class="col servico">
-                        <img class="img-servicos" src="img/bateria.jpg" alt="" srcset="">
-                    </div> 
-                    <div class="col servico col-text">
-                        <h1>Problemas na Bateria</h1>
-                        <p class="text-servico">
-                        Acha que sua bateria está viciada? Ela descarrega tão rápido que mal 
-                        dá para mexer? Podemos te ajudar com esse importuno!!
-                        </p>
-                        <a href="entrar.php" class="btn btn-saiba-mais">Entrar em contato</a>
-                    </div>
+            </div>
+            <div class="row div-servico">
+                <div class="col servico">
+                    <img class="img-servicos" src="img/bateria.jpg" alt="" srcset="">
+                </div> 
+                <div class="col servico col-text">
+                    <h1>Problemas na Bateria</h1>
+                    <p class="text-servico">
+                    Acha que sua bateria está viciada? Ela descarrega tão rápido que mal 
+                    dá para mexer? Podemos te ajudar com esse importuno!!
+                    </p>
+                    <a href="entrar.php" class="btn btn-saiba-mais">Entrar em contato</a>
                 </div>
-                <div class="row div-servico">
-                    <div class="col servico">
-                        <h1>Troca de Placa-Mãe</h1>
-                        <p class="text-servico">
-                            Seu notebook parou de funcionar? É possível que o problema seja na placa-mãe.
-                        </p>
-                        <a href="entrar.php" class="btn btn-saiba-mais">Entrar em contato</a>
-                    </div>
-                    <div class="col servico">
-                        <img class="img-servicos" src="img/placa_mae.png" alt="" srcset="">
-                    </div>
+            </div>
+            <div class="row div-servico">
+                <div class="col servico">
+                    <h1>Troca de Placa-Mãe</h1>
+                    <p class="text-servico">
+                        Seu notebook parou de funcionar? É possível que o problema seja na placa-mãe.
+                    </p>
+                    <a href="entrar.php" class="btn btn-saiba-mais">Entrar em contato</a>
                 </div>
-                <div class="row div-servico">
-                    <div class="col servico">
-                        <img class="img-servicos" src="img/sistema_seguranca.png" alt="" srcset="">
-                    </div>
-                    <div class="col servico">
-                        <h1>Sistema de Segurança</h1>
-                        <p class="text-servico">
-                        Podemos te ajudar na hora de implementar uma trava de segurança ou até mesmo um antivírus.
-                        </p>
-                        <a href="entrar.php" class="btn btn-saiba-mais">Entrar em contato</a>
-                    </div>
+                <div class="col servico">
+                    <img class="img-servicos" src="img/placa_mae.png" alt="" srcset="">
                 </div>
-                <div class="row div-servico">
-                    <div class="col servico">
-                        <h1>Sistemas Operacionais</h1>
-                        <p class="text-servico">
-                        Instalação ou atualização do sistema operacional.
-                        </p>
-                        <a href="entrar.php" class="btn btn-saiba-mais">Entrar em contato</a>
-                    </div>
-                    <div class="col servico">
-                        <img class="img-servicos" src="img/sistema_operacional.webp" alt="" srcset="">
-                    </div>
+            </div>
+            <div class="row div-servico">
+                <div class="col servico">
+                    <img class="img-servicos" src="img/sistema_seguranca.png" alt="" srcset="">
+                </div>
+                <div class="col servico">
+                    <h1>Sistema de Segurança</h1>
+                    <p class="text-servico">
+                    Podemos te ajudar na hora de implementar uma trava de segurança ou até mesmo um antivírus.
+                    </p>
+                    <a href="entrar.php" class="btn btn-saiba-mais">Entrar em contato</a>
+                </div>
+            </div>
+            <div class="row div-servico">
+                <div class="col servico">
+                    <h1>Sistemas Operacionais</h1>
+                    <p class="text-servico">
+                    Instalação ou atualização do sistema operacional.
+                    </p>
+                    <a href="entrar.php" class="btn btn-saiba-mais">Entrar em contato</a>
+                </div>
+                <div class="col servico">
+                    <img class="img-servicos" src="img/sistema_operacional.webp" alt="" srcset="">
                 </div>
             </div>
         </div>
 
-        <button style="display: none;" type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-
-
+        <!-- caso o usuario nao esteja logado, adiciona uma mensagem no canto inferior da tela para ele logar ou criar uma conta -->
         <?php
             $logado =  $_SESSION['logado'] ?? NULL;//pega sessão que verifica se o usuario esta logado ou nao
-            if(!$logado){//caso o usuaio esteja logado manda redreciona para a pagina principal ?>
+            if(!$logado){//caso o usuaio esteja logado, exibe a mensagem ?>
                 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <img src="img/SJM.png" height="20px" class="rounded me-2" alt="...">
-                        <strong class="me-auto" style="font-size:16px;">SJM</strong>
-                        <small>Agora</small>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body" style="font-size:16px;">
-                        Crie sua conta <a href="cadastro.php">aqui!</a> Ou entre por <a href="entrar.php">aqui!</a>
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <img src="img/SJM.png" height="20px" class="rounded me-2" alt="...">
+                            <strong class="me-auto" style="font-size:16px;">SJM</strong>
+                            <small>Agora</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body" style="font-size:16px;">
+                            Crie sua conta <a href="cadastro.php">aqui!</a> Ou entre por <a href="entrar.php">aqui!</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <!-- Script para mostrar notificação para o usuario logar -->
+                <script>
+                    var toastLiveExample = document.getElementById('liveToast')
+                    var toast = new bootstrap.Toast(toastLiveExample)
+                    toast.show()
+                </script>
           <?php  }
         ?>
     </main>
 
-    <script>
-        var toastTrigger = document.getElementById('liveToastBtn')
-        var toastLiveExample = document.getElementById('liveToast')
-                var toast = new bootstrap.Toast(toastLiveExample)
-
-                toast.show()
-    </script>
-    <?php include_once "footer.php" ?>
+    <?php include_once "footer.php" ?><!-- chama arquivo footer.php para adicionar footer -->
 </body>
 </html>

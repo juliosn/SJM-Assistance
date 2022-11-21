@@ -39,17 +39,13 @@ CREATE TABLE `tbclientes` (
   `complemento` varchar(100) NOT NULL,
   `cidade` varchar(50) NOT NULL,
   `estado` varchar(3) NOT NULL,
-  `imgConta` varchar(11) NOT NULL
+  `imgConta` varchar(11) NOT NULL,
+  `EstadoConta` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `tbclientes`
 --
-
-INSERT INTO `tbclientes` (`id`, `nome`, `nomeUsuario`, `email`, `senha`, `cep`, `endereco`, `numero`, `complemento`, `cidade`, `estado`, `imgConta`) VALUES
-(1, 'João', 'joao123', 'joao@gmail.com', '123', '987634', 'Rua Enrique Barbosa', '27', 'Casa', 'São Paulo', 'SP', '1.png'),
-(2, 'Júlio', 'julio123', 'julio@gmail.com', '123', '34223', 'Rua Neves', 'A123', 'Apartamento', 'São Paulo', 'SP', '2.png');
-
 -- --------------------------------------------------------
 
 --
@@ -63,15 +59,16 @@ CREATE TABLE `tbfuncionario` (
   `email` varchar(200) NOT NULL,
   `senha` varchar(100) NOT NULL,
   `imgConta` varchar(10) NOT NULL,
-  `permissoes` varchar(100) NOT NULL
+  `permissoes` varchar(100) NOT NULL,
+  `EstadoConta` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `tbfuncionario`
 --
 
-INSERT INTO `tbfuncionario` (`idFuncionario`, `nome`, `cargo`, `email`, `senha`, `imgConta`, `permissoes`) VALUES
-(1, 'Admin', 'Adiministrador', 'admin@gmail.com', '123', 'f1.png', 'todas');
+INSERT INTO `tbfuncionario` (`idFuncionario`, `nome`, `cargo`, `email`, `senha`, `imgConta`, `permissoes`, `EstadoConta`) 
+VALUES (1, 'Admin', 'Adiministrador', 'admin@gmail.com', '123', 'f1.png', 'todas', 'Ativo');
 
 -- --------------------------------------------------------
 
@@ -80,8 +77,8 @@ INSERT INTO `tbfuncionario` (`idFuncionario`, `nome`, `cargo`, `email`, `senha`,
 --
 
 CREATE TABLE `tbservico` (
-  `idCliente` int(4) NOT NULL,
   `idServico` int(4) NOT NULL,
+  `idCliente` int(4) NOT NULL,
   `marca` varchar(50) NOT NULL,
   `modelo` varchar(50) NOT NULL,
   `descricaoProblema` varchar(100) NOT NULL,
@@ -93,13 +90,6 @@ CREATE TABLE `tbservico` (
 --
 -- Extraindo dados da tabela `tbservico`
 --
-
-INSERT INTO `tbservico` (`idCliente`, `idServico`, `marca`, `modelo`, `descricaoProblema`, `formaEnvio`, `garantia`, `dataServico`) VALUES
-(1, 1, 'Lenovo', 'Xm32', 'Caiu', 'levarAparelho', 'Sim', '2022-11-17 13:43:07'),
-(1, 2, 'Positivo', 'Asus', 'Simplesmente parou de funcionar', 'levarAparelho', 'Nao', '2022-11-17 13:43:12'),
-(1, 3, 'Samsung', '', '1212', 'levarAparelho', 'Sim', '2022-11-17 13:43:18'),
-(2, 5, 'Positivo', 'Xm32', 'qwqw', 'levarAparelho', 'Sim', '2022-11-17 13:43:28'),
-(1, 6, 'Asus', '', 'qwqw', 'qwqw', 'qwqw', '2022-11-17 13:43:36');
 
 -- --------------------------------------------------------
 
@@ -121,13 +111,6 @@ CREATE TABLE `tbstatuspedido` (
 --
 -- Extraindo dados da tabela `tbstatuspedido`
 --
-
-INSERT INTO `tbstatuspedido` (`idStatusPedido`, `idServico`, `idCliente`, `idFuncionario`, `statusServico`, `mensagemFuncionario`, `dataLevarNotebook`, `dataTerminoServico`) VALUES
-(1, 1, 1, 0, 'Em manutenção', 'É vou ter q arrumar', '', ''),
-(2, 2, 1, 0, 'Cancelado', 'não quero arrumar, se vira', '', ''),
-(3, 3, 1, 0, '', '', '', ''),
-(4, 4, 2, 0, 'Finalizado', 'Já pode vir buscar', '', ''),
-(5, 4, 2, 0, 'Aguardando entrega do notebook', 'Você ainda não enviou o notebook', '', '');
 
 --
 -- Índices para tabelas despejadas

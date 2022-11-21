@@ -116,6 +116,7 @@ td{
     width: 200px!important;
     border: 1px solid #002060;
     margin-top: 40px;
+    margin-bottom: 20px!important;
     font-size: 20px;
 }
 
@@ -229,6 +230,7 @@ footer{/*Rodapé do site*/
     width: 150px;
     border: 2px solid #18A0FB!important;
     border-radius: 6px!important;
+    margin-top: 20px!important;
     font-size: 20px!important;
 }
 
@@ -237,14 +239,14 @@ footer{/*Rodapé do site*/
     border: 2px solid #fff!important;
     width: 150px;
     border-radius: 6px!important;
-    margin-top: 20px;
+    margin-top: 20px!important;
     font-size: 20px!important;
 }
 
 .btn-saiba-mais{/*botão saiba mais (marcas parceiras - home)*/
     border: 1px solid dodgerblue!important;
     color: dodgerblue!important;
-    margin-top: 20px;
+    margin-top: 20px!important;
     font-size: 20px!important;
 }
 
@@ -259,16 +261,49 @@ footer{/*Rodapé do site*/
     width: 150px;
     margin-top: 20px;
 }
+.btn-aceitar-pedido:hover, .btn-confirmar-pedido:hover{
+    background: #fff!important;
+    color: #002060!important;
+    border: 1px solid #002060!important;
+    width: 150px;
+    margin-top: 20px;
+}
+
 .btn-nao-aceitar-pedido, .btn-cancelar-pedido{
     background: #dc3545!important;
     color: #fff!important;
     width: 180px;
     margin-top: 20px;
 }
+
+
+.btn-nao-aceitar-pedido:hover, .btn-cancelar-pedido:hover{
+    background: #fff!important;
+    color: #dc3545!important;
+    border-color: red;
+    width: 180px;
+    margin-top: 20px;
+}
+
+.btn-atualizar-cliente{
+    background: #002060!important;
+    color: #fff!important;
+    width: 90px;
+}
+.btn-excluir-cliente:hover{
+    background: #fff!important;
+    color: #002060!important;
+    border-color:#002060;
+}
+
 .btn-excluir-cliente{
     background: #dc3545!important;
     color: #fff!important;
     width: 180px;
+}
+.row-contato{
+    justify-content: center; 
+    margin-top: 70px!important;
 }
 
 .btn-excluir-cliente:hover{
@@ -307,8 +342,12 @@ footer{/*Rodapé do site*/
     right: 40px;
     bottom: 80px;
     position: absolute;
+    margin-top: 20px;
 }
 
+.txt-cancelado{
+    color: #dc3545;
+}
 .btn-proximo-cadastrar:hover{
     background: #fff!important;
     color: #002060!important;
@@ -325,6 +364,14 @@ footer{/*Rodapé do site*/
 .btn-saiba-mais:hover{
     background: dodgerblue!important;
     color: #fff!important;
+}
+
+.img-conta-menu-cel{
+    margin-bottom: 40px;
+    border-radius: 50%;
+}
+.nav-login-cel{
+    text-align: center;
 }
 
 /* BOTÕES */
@@ -433,7 +480,31 @@ footer{/*Rodapé do site*/
     font-size: 20px;
     line-height: 30px!important;
     text-align: justify;
-    color: #198754;
+}
+label{
+    font-size: 20px!important;
+}
+
+.textarea-atualizar-funcionario, .textarea-id-atualizar-funcionario{
+    resize: none;
+}
+.textarea-id-atualizar-funcionario{
+    border: 0px!important;
+    background: none!important;
+}
+
+.select-atualizar-funcionario{
+    margin-top: 0px!important;
+}
+
+.alerta-entrar{/*todas as mensagens da pagina entrar*/
+    width: 100%; 
+    margin-top: 150px;
+}
+.alerta-esqueci-senha{/*todas as mensagens da pagina entrar.php?link=esqueciSenha*/
+    width: 100%; 
+    margin-top: -50px;
+    margin-bottom: 100px!important;
 }
 
 .div-opcao-entrega{
@@ -458,6 +529,21 @@ footer{/*Rodapé do site*/
     min-height: 400px;
     padding: 30px 50px;
     position: relative;
+    margin-bottom: 100px;
+}
+.form-cadastra-funcionario{
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    min-height: 400px;
+    padding: 30px 50px;
+    position: relative;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.titulo-cadastrar-funcionario{
+    text-align: center;
+    width: 100%;
     margin-bottom: 100px;
 }
 
@@ -492,7 +578,10 @@ footer{/*Rodapé do site*/
     outline: 0;
 }
 
-.input-erro{
+.was-validated .form-control:valid, .form-control.is-valid{
+    border-bottom: 2px solid #002060!important;
+}
+.was-validated .form-control:invalid, .form-control.is-invalid{
     border-bottom: 2px solid #dc3545!important;
 }
 
@@ -505,6 +594,18 @@ footer{/*Rodapé do site*/
     right: 10px;
     cursor: pointer;
 }
+.img-conta-listarpedido{
+    height: 100px!important;
+    width: 100px!important;
+    background: #ccc!important;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.alinhar-img-conta-cliente{
+    display: flex;
+    align-items: center;
+}
+
 .invalid-feedback-senha, .invalid-feedback-senha1{
     position: absolute!important;
 }
@@ -541,9 +642,7 @@ footer{/*Rodapé do site*/
   font-size: 0.875em!important;
   color: #dc3545!important;
 }
-.input-erro{
-    border-bottom: 1px solid #dc3545!important;
-}
+
 
 .titulo-sobre{
     text-align: center;
@@ -704,6 +803,11 @@ footer{/*Rodapé do site*/
     text-align: center;
 }
 
+.txt-sem-registro{
+    text-align: center;
+    width: 100%;
+}
+
 .link-menu-servico{
     color: #000;
     text-decoration: none;
@@ -793,6 +897,11 @@ footer{/*Rodapé do site*/
     background-color: #fff!important;
     color: #000!important;
     cursor: default!important;;
+}
+
+.table-listar-cliente{
+    position: sticky;
+    top: 90px;
 }
 
 /* ADAPTAÇÃO PARA DISPOSITIVOS */
@@ -1044,7 +1153,7 @@ footer{/*Rodapé do site*/
         font-size: 20px;
     }
     .btn-group{
-        width: 50%;
+        width: 75%;
     }
     .form-cadastrar{
         padding: 10px 20px;
@@ -1052,5 +1161,31 @@ footer{/*Rodapé do site*/
     .btn-proximo-cadastrar{
         margin-top: 50px;
         position: static;
+    }
+    .form-cadastra-funcionario, .form-cadastra-funcionario .row{
+        margin: 10px 0 0 0!important;
+        padding: 5px 5px 0 5px!important;
+    }
+
+    main, main .container{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        min-height: 70vh!important;
+    }
+    .row-contato{
+        margin-top: -100px!important;
+    }
+    .btn-cadastrar{
+        margin-bottom: 20px;
+    }
+
+    .table{
+        overflow: scroll!important;
+        width: 400px!important;
+    }
+    .table-listar-cliente{
+        position: sticky;
+        top: 10px;
     }
 }

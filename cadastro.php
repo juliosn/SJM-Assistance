@@ -11,9 +11,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJM - Assistance</title>
+    <title>SJM Assistance - Cadastro</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="img/SJM.png" type="image/x-icon">
 </head>
 <body>
@@ -165,7 +168,7 @@
                                                 Por favor, informe sua senha.
                                             </div>
                                         </div>
-                                        <div class="col-md-12 mb-3 col-form-cadastro">
+                                        <div class="col-md-12 mb-5 col-form-cadastro">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                                             <label class="form-check-label" for="flexCheckDefault">
                                                     <span id="passwordHelpInline" class="text-muted">
@@ -233,35 +236,43 @@
                                     </div>
                                     <div class="col-md-6 mb-3 col-form-cadastro">
                                         <label for="txtEmailCadastrar">Email</label>
-                                        <input type="email" class="form-control" value="<?php echo $_POST['txtEmailCadastrar']; ?>" id="txtEmailCadastrar" name="txtEmailCadastrar" required>
+                                        <input value="<?php echo $_POST['txtEmailCadastrar']; ?>" onkeyup="confirmarEmail()" type="email" class="form-control" id="txtEmailCadastrar" name="txtEmailCadastrar" required>
                                         <div class="invalid-feedback">
                                         Por favor, informe seu email.
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3 col-form-cadastro">
-                                        <label for="txtEmailCadastrar">Confirmar Email</label>
-                                        <input type="email" class="form-control" value="<?php echo $_POST['txtEmailCadastrar']; ?>" id="txtEmailCadastrar" name="txtEmailCadastrar" required>
+                                        <label for="txtConfirmarEmailCadastrar">Confirmar Email</label>
+                                        <input value="<?php echo $_POST['txtEmailCadastrar']; ?>" onkeyup="confirmarEmail()" type="email" class="form-control" id="txtConfirmarEmailCadastrar" name="txtConfirmarEmailCadastrar" required>
                                         <div class="invalid-feedback">
-                                            Por favor, informe seu email.
+                                            Por favor, confirme seu email.
                                         </div>
+                                        <div id="erro-email"></div>
                                     </div>
                                     <div class="col-md-6 mb-3 col-form-cadastro">
-                                        <label for="txtSenhaEntrar">Senha</label>
-                                        <input type="password" class="form-control" value="<?php echo $_POST['txtSenhaCadastrar']; ?>" id="txtSenhaCadastrar" name="txtSenhaCadastrar" required>
-                                        <div class="invalid-feedback">
-                                            Por favor, informe sua senha.
-                                        </div>
-                                        <small id="passwordHelpInline" class="text-muted">
-                                            Crie uma senha segura, com numeros e letras.
-                                        </small>
-                                    </div>
-                                    <div class="col-md-6 mb-3 col-form-cadastro">
-                                        <label for="txtConfirmarSenhaEntrar">Confirmar Senha</label>
-                                        <input type="password" value="<?php echo $_POST['txtSenhaCadastrar']; ?>" id="txtSenhaCadastrar" class="form-control" name="txtSenhaCadastrar" placeholder="" required>
-                                        <div class="invalid-feedback">
-                                            Por favor, confirme sua senha.
+                                    <label for="txtSenhaCadastrar">Senha</label>
+                                    <div class="senha">
+                                        <img src="img/eye.svg" class="img-mostrar-senha" id="img-mostrar-senha-cad" height="30" alt="" onclick="showPasswordCadSenha()">
+                                        <input pattern=".{8,}" value="<?php echo $_POST['txtSenhaCadastrar']; ?>" onkeyup="confirmarSenha()" type="password" class="form-control senha-igual" id="txtSenhaCadastrar" name="txtSenhaCadastrar" required>
+                                        <div class="invalid-feedback invalid-feedback-senha1">
+                                            Por favor, crie uma senha segura.
                                         </div>
                                     </div>
+                                    <small id="passwordHelpInline" class="text-muted">
+                                        Crie uma senha segura, com no mínimo 8 caracteres.
+                                    </small>
+                                </div>
+                                <div class="col-md-6 mb-3 col-form-cadastro">
+                                    <label for="txtConfirmarSenhaCadastrar">Confirmar Senha</label>
+                                    <div class="senha">
+                                        <img src="img/eye.svg" class="img-mostrar-senha" id="img-confirmar-senha-cad" height="30" alt="" onclick="showPasswordCadConfirmarSenha()">
+                                        <input value="<?php echo $_POST['txtSenhaCadastrar']; ?>" onkeyup="confirmarSenha()" type="password" class="form-control senha-igual" id="txtConfirmarSenhaCadastrar" name="txtConfirmarSenhaCadastrar" required>
+                                    <div class="invalid-feedback invalid-feedback-senha">
+                                        Por favor, confirme sua senha.
+                                    </div>
+                                    </div>
+                                    <div id="erro-senha"></div>
+                                </div>
                                 <h2 style="margin-bottom: 40px; margin-top: 100px">Informações endereço</h2>
                                 <div class="row">
                                     <div class="form-group col-md-6 mb-3 col-form-cadastro">

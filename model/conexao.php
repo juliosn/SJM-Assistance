@@ -1,10 +1,8 @@
 <?php
+
 session_start();
-$_SESSION['logado'] = False;
 //timezone
-date_default_timezone_set('America/Sao_Paulo');
-$timezone = new DateTimeZone('America/Sao_Paulo');//pega data de São Paulo
-$data_hora = date('Y-m-d H:i');//define padrão de data para inserir na tabela (Ano-Mes-Dia Hora:Minuto)
+
 // conexão com o banco de dados
 define('BD_SERVIDOR','localhost');
 define('BD_USUARIO','root');
@@ -25,8 +23,8 @@ class Conexao{
     }
 
     public function cadastrar($nome, $nomeUsuario, $email, $senha, $cep, $endereco, $numeroCasa, $complemento, $cidade, $estado){
-        $stmt = $this->mysqli->query("INSERT INTO `tbclientes`(`nome`, `nomeUsuario`, `email`, `senha`, `cep`, `endereco`, `numero`, `complemento`, `cidade`, `estado`) 
-            VALUES ('$nome','$nomeUsuario','$email','$senha','$cep','$endereco','$numeroCasa','$complemento','$cidade','$estado')");
+        $stmt = $this->mysqli->query("INSERT INTO `tbclientes`(`nome`, `nomeUsuario`, `email`, `senha`, `cep`, `endereco`, `numero`, `complemento`, `cidade`, `estado`, `EstadoConta`) 
+            VALUES ('$nome','$nomeUsuario','$email','$senha','$cep','$endereco','$numeroCasa','$complemento','$cidade','$estado', 'Ativo')");
         if( $stmt > 0){
             return true;
         }else{
@@ -37,8 +35,8 @@ class Conexao{
     public function entrar($emailLogin, $senhaLogin){
         $stmt = $this->mysqli->query("SELECT * FROM `tbclientes` WHERE `email` = '$emailLogin' AND `senha` = '$senhaLogin';");
 
-
-        $lista = $stmt->fetch_all(MYSQLI_ASSOC);
+        if( $stmt > 0){
+            $lista = $stmt->fetch_all(MYSQLI_ASSOC);
         if(count($lista) >=1){//caso a lista seja maior ou igua 1 (se o usuario possuir uma conta com os dados digitados)
             $f_lista = array();//cria um array
             $i = 0;
@@ -50,7 +48,7 @@ class Conexao{
                 $f_lista[$i]['senha'] = $l['senha'];
                 $f_lista[$i]['cep'] = $l['cep'];
                 $f_lista[$i]['endereco'] = $l['endereco'];
-                $f_lista[$i]['numeroCasa'] = $l['numero'];
+                $f_lista[$i]['numero'] = $l['numero'];
                 $f_lista[$i]['complemento'] = $l['complemento'];
                 $f_lista[$i]['cidade'] = $l['cidade'];
                 $f_lista[$i]['estado'] = $l['estado'];
@@ -114,9 +112,14 @@ class Conexao{
                 }
             }else{
                 $_SESSION['logado'] = FALSE;//define usuario como deslogado=
-            header("Location: ../entrar.php?entrar=semConta");
+                header("Location: ../entrar.php?entrar=semConta");
             }
         }
+    }else{
+        header("Location: ../entrar.php?entrar=semConta");
+        }
+        
+
     }
     public function atualizarImagemConta($imagemConta, $idUsuario){
 
@@ -126,41 +129,47 @@ class Conexao{
 
         $diretorioSalvar = "../img/imgConta/";//diretorio para salvar imagem no site
         $diretorioDb = "img/imgConta/";//diretorio que sera salvo na base de dados
-        $nomeImagem = $_SESSION['id'];//deixa nome da imagem como o id do usuario
-        $extensaoImagem = strtolower(pathinfo($imagemConta['name'], PATHINFO_EXTENSION)); //pega extensao do arquivo e deixa em minusculo
+         if(isset($_SESSION['cargo'])){//caso for um funcionario salvar a imagem com um nome diferente
+            $nomeImagem =  "f" . strval($_SESSION['idFuncionario']);//deixa nome da imagem como o id do usuario
+            $table = "tbfuncionario";
+            $id = $_SESSION['idFuncionario'];
+            $campoId = "idFuncionario";
+         }else{
+            $nomeImagem = $_SESSION['id'];//deixa nome da imagem como o id do usuario
+            $table = "tbclientes";
+            $id = $_SESSION['id'];
+            $campoId = "id";
+         }
 
-        $moverImagem = move_uploaded_file($imagemConta['tmp_name'], $diretorioSalvar . $nomeImagem . "." . $extensaoImagem);//salva imagem no site
+         
+         $extensaoImagem = strtolower(pathinfo($imagemConta['name'], PATHINFO_EXTENSION)); //pega extensao do arquivo e deixa em minusculo
 
-        $stmt = $this->mysqli->query("UPDATE `tbclientes` SET `imgConta` = '$nomeImagem.$extensaoImagem' WHERE id = '" . $_SESSION['id'] . "'");//insere diretorio no banco de dados
+         $moverImagem = move_uploaded_file($imagemConta['tmp_name'], $diretorioSalvar . $nomeImagem . "." . $extensaoImagem);//salva imagem no site
+
+         $stmt = $this->mysqli->query("UPDATE `$table` SET `imgConta` = '$nomeImagem.$extensaoImagem' WHERE $campoId = $id");//insere diretorio no banco de dados
     }
 
     public function agendarServico($idCliente, $marca, $modelo, $descricaoProblema, $formaEnvio, $garantia){
+        date_default_timezone_set('America/Sao_Paulo');
+        $timezone = new DateTimeZone('America/Sao_Paulo');//pega data de São Paulo
+        $data_hora = date('Y-m-d H:i');//define padrão de data para inserir na tabela (Ano-Mes-Dia Hora:Minuto)
         $stmt = $this->mysqli->query("INSERT INTO `tbservico`(`idCliente`, `marca`, `modelo`, `descricaoProblema`, `formaEnvio`, `garantia`, `dataServico`) 
-            VALUES ('$idCliente','$marca','$modelo','$descricaoProblema', '$formaEnvio','$garantia', $data_hora)");
+        VALUES ('$idCliente','$marca','$modelo','$descricaoProblema', '$formaEnvio','$garantia', '$data_hora')");
 
         $stmt = $this->mysqli->query("SELECT * FROM tbservico");
 
         $listaServico = $stmt->fetch_all(MYSQLI_ASSOC);
-        if(count($listaServico) >=1){//caso a lista seja maior ou igua 1 (se o usuario possuir uma conta com os dados digitados)
-            $f_lista = array();//cria um array
-            $i = 0;
-            foreach ($listaServico as $l) {//pega todas as informações do usuario
-                $f_lista[$i]['idServico'] = $l['idServico'];
-                $i++;
-            }
-            $idServico =  count($listaServico);
-        }else{
-            $_SESSION['logado'] = FALSE;//define usuario como deslogado=
-            header("Location: ../entrar.php?entrar=semConta");
-        }
+        $f_lista = array();//cria um array
+        $i = 0;
+        $idServico=count($listaServico);
 
         $stmt = $this->mysqli->query("INSERT INTO `tbstatuspedido`(`idCliente`, `idServico`) VALUES ('$idCliente', '$idServico')");
 
-        if( $stmt > 0){
-            return true;
-        }else{
+         if( $stmt > 0){
+             return true;
+         }else{
             return false;
-        }
+         }
     }
 
     public function getServico($id){
@@ -176,6 +185,7 @@ class Conexao{
             $i = 0;
             foreach ($lista as $l) {
                 $f_lista[$i]['idCliente'] = $l['idCliente'];
+                $f_lista[$i]['idServico'] = $l['idServico'];
                 $f_lista[$i]['marca'] = $l['marca'];
                 $f_lista[$i]['modelo'] = $l['modelo'];
                 $f_lista[$i]['descricaoProblema'] = $l['descricaoProblema'];
@@ -190,8 +200,9 @@ class Conexao{
         }
     }
 
-    public function getClienteFuncionario(){//lista os clientes para o funcionario
-        $stmt = $this->mysqli->query("SELECT * FROM tbclientes");
+    public function getClienteFuncionario($id){//lista os clientes para o funcionario
+        if($id<=0){
+            $stmt = $this->mysqli->query("SELECT * FROM tbclientes");
             
             $lista = $stmt->fetch_all(MYSQLI_ASSOC);
             $f_lista = array();
@@ -213,12 +224,64 @@ class Conexao{
                 $i++;
             }
             return $f_lista;
+        }else{
+            
+            $stmt = $this->mysqli->query("SELECT * FROM tbclientes WHERE id = $id");
+            
+            $lista = $stmt->fetch_all(MYSQLI_ASSOC);
+            $f_lista = array();
+            $i = 0;
+            foreach ($lista as $l) {
+                $f_lista[$i]['id'] = $l['id'];
+                $f_lista[$i]['nome'] = $l['nome'];
+                $f_lista[$i]['nomeUsuario'] = $l['nomeUsuario'];
+                $f_lista[$i]['email'] = $l['email'];
+                $f_lista[$i]['senha'] = $l['senha'];
+                $f_lista[$i]['cep'] = $l['cep'];
+                $f_lista[$i]['endereco'] = $l['endereco'];
+                $f_lista[$i]['numeroCasa'] = $l['numero'];
+                $f_lista[$i]['complemento'] = $l['complemento'];
+                $f_lista[$i]['cidade'] = $l['cidade'];
+                $f_lista[$i]['estado'] = $l['estado'];
+                $f_lista[$i]['imgContaCliente'] = $l['imgConta'];
+                $f_lista[$i]['EstadoConta'] = $l['EstadoConta'];
+                $i++;
+            }
+            return $f_lista;
+        }
     }
 
     public function listarStatusServico($id){
         try {
             if($id>=1){
                 $stmt = $this->mysqli->query("SELECT * FROM tbstatuspedido WHERE idCliente = '" . $id . "';");
+            }else{
+                $stmt = $this->mysqli->query("SELECT * FROM tbstatuspedido;");
+            }
+            $listaDois = $stmt->fetch_all(MYSQLI_ASSOC);
+            $f_listaDois = array();
+            $i = 0;
+            foreach ($listaDois as $l) {
+                $f_listaDois[$i]['idStatusPedido'] = $l['idStatusPedido'];
+                $f_listaDois[$i]['idServico'] = $l['idServico'];
+                $f_listaDois[$i]['idCliente'] = $l['idCliente'];
+                $f_listaDois[$i]['idFuncionario'] = $l['idFuncionario'];
+                $f_listaDois[$i]['statusServico'] = $l['statusServico'];
+                $f_listaDois[$i]['mensagemFuncionario'] = $l['mensagemFuncionario'];
+                $f_listaDois[$i]['dataLevarNotebook'] = $l['dataLevarNotebook'];
+                $f_listaDois[$i]['dataTerminoServico'] = $l['dataTerminoServico'];
+                $i++;
+            }
+            return $f_listaDois;
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao tentar Buscar Todos." . $e;
+        }
+    }
+
+    public function listarServicoFuncionario($id){
+        try {
+            if($id>=1){
+                $stmt = $this->mysqli->query("SELECT * FROM tbstatuspedido WHERE idStatusPedido = '" . $id . "';");
             }else{
                 $stmt = $this->mysqli->query("SELECT * FROM tbstatuspedido;");
             }
@@ -295,15 +358,25 @@ class Conexao{
         try{
             $stmt = $this->mysqli->query("UPDATE `tbstatuspedido` SET `statusServico` = 'Cancelado pelo usuário' WHERE idStatusPedido = $idStatusServico;");
         }catch(Exception $e){
-            echo"nao foi";
         }
     }
-    public function cancelarServicoFuncionario($idServico, $statusPedido){
+    public function cancelarServicoFuncionario($idStatusServico, $idFuncionario, $dataEnvio, $mensagemFuncionario, $idServico){
         try{
-            $stmt = $this->mysqli->query("UPDATE `tbstatuspedido` SET `statusServico` = '$statusPedido' WHERE idServico = $idServico;");
+            $stmt = $this->mysqli->query("UPDATE `tbstatuspedido` SET `statusServico` = 'Cancelado pelo funcionario', `idFuncionario` = '$idFuncionario', `dataLevarNotebook` = '$dataEnvio', `mensagemFuncionario` = '$mensagemFuncionario' WHERE idStatusPedido = $idStatusServico;");
         }catch(Exception $e){
-            echo"nao foi";
         }
+    }
+
+    public function aceitarPedidoUsuario($idStatusServico){
+        try{
+            $stmt = $this->mysqli->query("UPDATE `tbstatuspedido` SET `statusServico` = 'Confirmado pelo usuário' WHERE idStatusPedido = $idStatusServico;");
+        }catch(Exception $e){
+        }
+    }
+
+    public function confirmarPeloFuncionario($idStatusServico, $idFuncionario, $dataEnvio, $mensagemFuncionario, $idServico){
+        $stmt = $this->mysqli->query("UPDATE `tbstatuspedido` SET `statusServico` = 'Confirmado pelo funcionario', `idFuncionario` = '$idFuncionario', `dataLevarNotebook` = '$dataEnvio', `mensagemFuncionario` = '$mensagemFuncionario' WHERE idStatusPedido = $idStatusServico;");
+
     }
 
     public function apagarConta($id, $conta, $nomeFuncionario){
@@ -328,5 +401,68 @@ class Conexao{
         }catch(Exception $e){
             echo"nao foi";
         }
+    }
+
+    public function incluirFuncionario($nome, $cargo, $email, $senha, $permissoes){
+        $stmt = $this->mysqli->query("INSERT INTO `tbfuncionario`(`nome`, `cargo`, `email`, `senha`, `permissoes`, `EstadoConta`) VALUES ('$nome', '$cargo', '$email', '$senha', '$permissoes', 'Ativo')");
+
+        if( $stmt > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateContaCliente($id, $nome, $nomeUsuario, $email, $senha, $cep, $endereco, $numeroCasa, $complemento, $cidade, $estado){
+
+        $stmt = $this->mysqli->query("UPDATE `tbclientes` SET `nome` = '$nome', `nomeUsuario` = '$nomeUsuario', `email` = '$email', `senha` = '$senha', `cep` = '$cep', `endereco` = '$endereco', `numero` = '$numeroCasa', `complemento` = '$complemento', `cidade` = '$cidade', `estado` = '$estado'  WHERE id = '" . $id . "'");//insere diretorio no banco de dados
+        echo "UPDATE `tbclientes` SET `nome` = '$nome', `nomeUsuario` = '$nomeUsuario', `email` = '$email', `senha` = '$senha', `cep` = '$cep', `endereco` = '$endereco', `numero` = '$numeroCasa', `complemento` = '$complemento', `cidade` = '$cidade', `estado` = '$estado'  WHERE id = '" . $id . "'";
+        if( $stmt > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateContaFuncionario($id, $nome, $cargo, $email, $senha, $permissoes){
+
+        $stmt = $this->mysqli->query("UPDATE `tbfuncionario` SET `nome` = '$nome', `cargo` = '$cargo', `email` = '$email', `senha` = '$senha', `permissoes` = '$permissoes'  WHERE idFuncionario = '" . $id . "'");//insere diretorio no banco de dados
+        if( $stmt > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //FUNCAO PRO ADMINISTRADOR ATUALIZAR CONTA DO FUNCIONARIO
+    public function updateContaFuncionarioAdm($id, $cargo, $permissoes){
+
+        $stmt = $this->mysqli->query("UPDATE `tbfuncionario` SET `cargo` = '$cargo', `permissoes` = '$permissoes'  WHERE idFuncionario = '" . $id . "'");//insere diretorio no banco de dados
+        if( $stmt > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function enviarCodEmail($email, $cod){
+        $stmt = $this->mysqli->query("SELECT * FROM `tbclientes` WHERE `email` = '$email';");
+        $listaDois = $stmt->fetch_all(MYSQLI_ASSOC);
+        $f_listaDois = array();
+        $i = 0;
+        foreach ($listaDois as $l) {
+            $f_listaDois[$i]['senha'] = $l['senha'];
+            $i++;
+        }
+        return $f_listaDois;
+
+        // the message
+        $msg = "Sua senha é: \n$f_listaDois[1]";
+
+        // use wordwrap() if lines are longer than 70 characters
+        $msg = wordwrap($msg,70);
+
+        // send email
+        mail("$email","Recuperação de senha",$msg);
     }
 }

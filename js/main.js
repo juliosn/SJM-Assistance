@@ -25,8 +25,8 @@
 
 //BOTÃO PARA MOSTRAR SENHA    
 function showPassword() {//Botao de olho para mostrar e esconder a senha (pagina entrar)
-    var senha = document.getElementById("txtSenhaEntrar");
-    var imgShow = document.querySelector("#img-mostrar-senha-entrar");
+    var senha = document.querySelector(".password");
+    var imgShow = document.querySelector("#img-mostrar");
     if (senha.type === "password") {
       senha.type = "text";
       imgShow.src = "img/eye-off.svg"
@@ -85,18 +85,3 @@ function confirmarSenha(){//funcao que confirma se o usuario digitou a mesma sen
     
   }
 } 
-
-        
-function enviarRecuperacaoSenha(){
-    var alertSuccess = document.querySelector(".alerta-senha-success")
-    var alertDanger = document.querySelector(".alerta-senha-danger")
-    var numero = Math.floor(Math.random() * (3 - 1) + 1);
-    console.log(numero)
-    if(numero ==1){
-        alertSuccess.classList.add("aparecer-alert")
-        alertDanger.classList.remove("aparecer-alert")
-    }else{
-        alertDanger.classList.add("aparecer-alert")
-        alertSuccess.classList.remove("aparecer-alert")
-    }
-}
