@@ -1,6 +1,6 @@
 <?php
     session_start();//inicia sessão    
-    require_once("model\cadastrar.php");
+    require_once "model\cadastrar.php";
     $logado =  $_SESSION['logado'] ?? NULL;//pega sessão que verifica se o usuario esta logado ou nao
     if($logado) die(header('Location: index.php'));//caso o usuaio esteja logado manda redreciona para a pagina principal
 
