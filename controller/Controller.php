@@ -1,6 +1,6 @@
 <?php
 $root = realpath($_SERVER["DOCUMENT_ROOT"]);
-require_once("$root\proj-IBM\model\cadastrar.php");
+require_once("$root\sjm-assistance\model\cadastrar.php");
 
 class Controller{
 
