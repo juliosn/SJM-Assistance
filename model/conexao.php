@@ -1,10 +1,10 @@
 <?php
 
 //conexão com o banco de dados
-// define('BD_SERVIDOR','localhost');
-// define('BD_USUARIO','id19879675_root');
-// define('BD_SENHA','+movKMr#}dhC7|cc');
-// define('BD_BANCO','id19879675_sjm'); 
+define('BD_SERVIDOR','localhost');
+define('BD_USUARIO','id19879675_root');
+define('BD_SENHA','+movKMr#}dhC7|cc');
+define('BD_BANCO','id19879675_sjm'); 
 
 // define('BD_SERVIDOR','us-cdbr-east-06.cleardb.net');
 // define('BD_USUARIO','b5cf66072f3974');
@@ -12,10 +12,10 @@
 // define('BD_BANCO','heroku_e0261504408fe1d?reconnect'); 
 
 //conexão com o banco de dados
-define('BD_SERVIDOR','localhost');
-define('BD_USUARIO','root');
-define('BD_SENHA','');
-define('BD_BANCO','sjm');
+// define('BD_SERVIDOR','localhost');
+// define('BD_USUARIO','root');
+// define('BD_SENHA','');
+// define('BD_BANCO','sjm');
 
 class Conexao{
     
