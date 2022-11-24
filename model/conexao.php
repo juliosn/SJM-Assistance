@@ -9,7 +9,8 @@
 define('BD_SERVIDOR','us-cdbr-east-06.cleardb.net');
 define('BD_USUARIO','b5cf66072f3974');
 define('BD_SENHA','43b78306');
-define('BD_BANCO','heroku_e0261504408fe1d?reconnect'); 
+define('BD_BANCO','heroku_e0261504408fe1d'); 
+
 
 //conexão com o banco de dados
 // define('BD_SERVIDOR','localhost');
