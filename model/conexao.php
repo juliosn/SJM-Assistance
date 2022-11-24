@@ -1,15 +1,15 @@
 <?php
 
 //conexão com o banco de dados
-define('BD_SERVIDOR','localhost');
-define('BD_USUARIO','id19879675_root');
-define('BD_SENHA','+movKMr#}dhC7|cc');
-define('BD_BANCO','id19879675_sjm'); 
+// define('BD_SERVIDOR','localhost');
+// define('BD_USUARIO','id19879675_root');
+// define('BD_SENHA','wg5dj\$[nO3/lGOT');
+// define('BD_BANCO','id19879675_sjm'); 
 
-// define('BD_SERVIDOR','us-cdbr-east-06.cleardb.net');
-// define('BD_USUARIO','b5cf66072f3974');
-// define('BD_SENHA','43b78306');
-// define('BD_BANCO','heroku_e0261504408fe1d?reconnect'); 
+define('BD_SERVIDOR','us-cdbr-east-06.cleardb.net');
+define('BD_USUARIO','b5cf66072f3974');
+define('BD_SENHA','43b78306');
+define('BD_BANCO','heroku_e0261504408fe1d?reconnect'); 
 
 //conexão com o banco de dados
 // define('BD_SERVIDOR','localhost');
@@ -93,6 +93,8 @@ class Conexao{
                     header("Location: index.php");
                 }else{//caso a conta nao esteja ativado não loga e aparece uma mensagem para entrar em contato
                     header("Location: entrar.php?contaDesativado=true");
+                    $_SESSION['contaLogado'] = "desativado";
+                    $_SESSION['logado'] = False;
                 }
             }else{//caso nao encontre resultado na tabela de cliente, procurar na tabela de funcionario
                 $stmt = $this->mysqli->query("SELECT * FROM `tbfuncionario` WHERE `email` = '$emailLogin' AND `senha` = '$senhaLogin';");
@@ -127,9 +129,12 @@ class Conexao{
                         header("Location: index.php");
                     }else{//caso a conta nao esteja ativado não loga e aparece uma mensagem para entrar em contato
                         header("Location: entrar.php?contaDesativado=true");
+                        $_SESSION['funcionario'] = False;
+                        $_SESSION['logado'] = False;
                     }
                 }else{//caso nao encontre nenhum valor (nem na tabela cliente e nem na de funcionarios)
                     $_SESSION['logado'] = FALSE;//define usuario como deslogado
+                    $_SESSION['funcionario'] = False;
                     header("Location: entrar.php?entrar=semConta");//aparece mensagem de sem conta
                 }
             }
@@ -145,8 +150,8 @@ class Conexao{
             die(header("Location: conta.php?alterarImagem=danger"));
         }
 
-        $diretorioSalvar = "../img/imgConta/";//diretorio para salvar imagem no site
-        $diretorioDb = "img/imgConta/";//diretorio que sera salvo na base de dados
+        $diretorioSalvar = "img/imgConta/";//diretorio para salvar imagem no site
+
          if(isset($_SESSION['cargo'])){//caso for um funcionario salvar a imagem com um nome diferente
             $nomeImagem =  "f" . strval($_SESSION['idFuncionario']);//deixa nome da imagem como o id do usuario
             $table = "tbfuncionario";
@@ -158,13 +163,19 @@ class Conexao{
             $id = $_SESSION['id'];
             $campoId = "id";
          }
+         
+        //pega extensao do arquivo e deixa em minusculo
+        $extensaoImagem = strtolower(pathinfo($imagemConta['name'], PATHINFO_EXTENSION));
 
-         //pega extensao do arquivo e deixa em minusculo
-         $extensaoImagem = strtolower(pathinfo($imagemConta['name'], PATHINFO_EXTENSION));
-         //salva imagem na pasta img/imgConta/idCliente.extensao
-         $moverImagem = move_uploaded_file($imagemConta['tmp_name'], $diretorioSalvar . $nomeImagem . "." . $extensaoImagem);//salva imagem no site
-         //atualiza nome da imagem no banco de dados
-         $stmt = $this->mysqli->query("UPDATE `$table` SET `imgConta` = '$nomeImagem.$extensaoImagem' WHERE $campoId = $id");//insere diretorio no banco de dados
+         if($extensaoImagem != "png" && $extensaoImagem != "jpg" && $extensaoImagem != "jpeg"){//caso nao seja uma imagem aparede mensagem de erro
+            die(header("Location: conta.php?alterarImagem=extensaoErrada"));
+         }
+
+        //salva imagem na pasta img/imgConta/idCliente.extensao
+        $moverImagem = move_uploaded_file($imagemConta['tmp_name'], $diretorioSalvar . $nomeImagem . "." . $extensaoImagem);//salva imagem no site
+        //atualiza nome da imagem no banco de dados
+        $stmt = $this->mysqli->query("UPDATE `$table` SET `imgConta` = '$nomeImagem.$extensaoImagem' WHERE $campoId = $id");//insere diretorio no banco de dados
+         
 
         if( $stmt > 0){
             return true;
@@ -417,18 +428,16 @@ class Conexao{
 
     public function confirmarPeloFuncionario($idStatusServico, $idFuncionario, $dataEnvio, $mensagemFuncionario, $idServico){
         $stmt = $this->mysqli->query("UPDATE `tbstatuspedido` SET `statusServico` = 'Confirmado pelo funcionario', `idFuncionario` = '$idFuncionario', `dataLevarNotebook` = '$dataEnvio', `mensagemFuncionario` = '$mensagemFuncionario' WHERE idStatusPedido = $idStatusServico;");
-
     }
 
     public function apagarConta($id, $conta, $nomeFuncionario){//funcao para o funcionario poder apagar conta do cliente ou do funcionario
         try{
             if($conta == "cliente"){
-                $$stmt = $this->mysqli->query("UPDATE `tbclientes` SET `EstadoConta` = 'Desativado por " . $nomeFuncionario ."' WHERE id =" . $id . ";");
+                $stmt = $this->mysqli->query("UPDATE `tbclientes` SET `EstadoConta` = 'Desativado por " . $nomeFuncionario ."' WHERE id =" . $id . ";");
             }elseif($conta == "funcionario"){
                 $stmt = $this->mysqli->query("UPDATE `tbfuncionario` SET `EstadoConta` = 'Desativado por " . $nomeFuncionario ."' WHERE idFuncionario =" . $id . ";");
             }
         }catch(Exception $e){
-            echo"nao foi";
         }
     }
 

@@ -194,11 +194,41 @@ footer{/*Rodapé do site*/
     display: flex!important;
 }
 
-.div-mensagem-conta-criada-sucess, .div-mensagem-conta-criada-danger, .div-mensagem-sem-conta{
-    min-width: 100%;
-    margin-top: -130px;
-    margin-bottom: 100px;
+
+/* MENSAGENS DA PAGINA CADASTRAR FUNCIONARIO */
+.div-mensagem-conta-funcionario-criada-danger, .div-mensagem-conta-funcionario-criada-sucess, .div-mensagem-conta-funcionario-ja-cadastrado-danger{
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
+
+/* MENSAGENS DA PAGINA ENTRAR */
+.div-mensagem-entrar-cliente-ja-cadastrado, .div-mensagem-conta-criada-sucess, .div-mensagem-conta-criada-danger, .div-mensagem-sem-conta, .div-mensagem-conta-desativada, .div-mensagem-sem-nao-logado, .div-mensagem-senha-enviada, .div-mensagem-senha-nao-enviada{
+    min-width: 100%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+/* MENSAGENS DA PAGINA CONSULTA */
+.div-mensagem-conta-desativada-sucess, .div-mensagem-conta-desativada-danger, .div-mensagem-conta-recuperada-sucess, .div-mensagem-conta-recuperada-danger, .div-mensagem-conta-atualizada-adm-sucess, .div-mensagem-conta-atualizada-adm-danger{
+    min-width: 100%!important;
+    margin-top: 20px;
+    margin-bottom: 80px!important;
+}
+
+/* MENSAGENS DA CONTROLE SERVICO (PAGINA DO ADMINISTRADOR) */
+.div-mensagem-nao-aceitar-pedido-sucess, .div-mensagem-nao-aceitar-pedido-danger, .div-mensagem-aceitar-pedido-sucess, .div-mensagem-aceitar-pedido-danger{
+    min-width: 100%!important;
+    margin-top: 20px;
+    margin-bottom: 50px!important;
+}
+
+/* MENSAGENS DA CONTROLE SERVICO (PAGINA DO CLIENTE) */
+.div-mensagem-servico-agendado-sucess, .div-mensagem-servico-agendado-danger, .div-mensagem-servico-confirmado-sucess, .div-mensagem-servico-confirmado-danger,.div-mensagem-pedido-cancelado-sucess, .div-mensagem-pedido-cancelado-danger{
+    min-width: 100%!important;
+    margin-top: 20px;
+    margin-bottom: 50px!important;
+}
+
 
 .col-btn-celular{/*div com os botões do menu pra celular*/
     justify-content: center;
@@ -333,7 +363,6 @@ footer{/*Rodapé do site*/
     background: #002060!important;
     color: #fff!important;
     width: 150px;
-    margin-top: 20px;
 }
 
 .btn-ativar-cliente:hover{
@@ -341,7 +370,6 @@ footer{/*Rodapé do site*/
     color: #002060!important;
     border-color: #002060;
     width: 150px;
-    margin-top: 20px;
 }
 
 .btn-form-entrar:hover, .btn-cadastrar:hover{
@@ -511,16 +539,6 @@ label{
 
 .select-atualizar-funcionario{
     margin-top: 0px!important;
-}
-
-.alerta-entrar{/*todas as mensagens da pagina entrar*/
-    width: 100%; 
-    margin-top: 150px;
-}
-.alerta-esqueci-senha{/*todas as mensagens da pagina entrar.php?link=esqueciSenha*/
-    width: 100%; 
-    margin-top: -50px;
-    margin-bottom: 100px!important;
 }
 
 .div-opcao-entrega{
@@ -798,6 +816,8 @@ label{
 /* Página serviços */
 .titulo-servico{
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .titulo-solicitar-servico, .titulo-contato{
@@ -938,6 +958,14 @@ label{
     min-height: 50px!important;
     margin-left: 15px;
     font-size: 20px;
+}
+
+.col-tb-funcao{
+    min-width: 200px!important;
+}
+
+.col-esqueci-senha-text{
+    padding: 0 60px!important;
 }
 
 /* ADAPTAÇÃO PARA DISPOSITIVOS */
@@ -1091,10 +1119,6 @@ label{
     .form-cadastrar h2{
         text-align: center;
     }
-    .alerta-conta-danger{
-        margin-top: 170px!important;
-        margin-bottom: -100px;
-    }
     .col-titulo-cadastro{
         min-width: 100%; 
         padding: 0 5px!important;
@@ -1122,13 +1146,52 @@ label{
 }
 
 @media screen and (max-width: 512px){
-    .container-servico h1{
-        margin-top: 100px!important;
-        text-align: center;
+    /* MENSAGENS DA PAGINA CADASTRAR FUNCIONARIO */
+    .div-mensagem-conta-funcionario-criada-danger, .div-mensagem-conta-funcionario-criada-sucess, .div-mensagem-conta-funcionario-ja-cadastrado-danger{
+        margin-top: 45px;
+        margin-bottom: -50px;
     }
-    .alerta-entrar{
-        margin-top: 205px!important;
-        margin-bottom: -100px!important;
+    /* MENSAGENS DA PAGINA ENTRAR */
+    .div-mensagem-entrar-cliente-ja-cadastrado, .div-mensagem-conta-criada-sucess, .div-mensagem-conta-criada-danger, .div-mensagem-sem-conta, .div-mensagem-conta-desativada, .div-mensagem-sem-nao-logado, .div-mensagem-senha-enviada, .div-mensagem-senha-nao-enviada{
+        min-width: 100%!important;
+        margin-top: 45px!important;
+        margin-bottom: -50px;
+    }
+    /* MENSAGENS DA PAGINA CONSULTA */
+    .div-mensagem-conta-desativada-sucess, .div-mensagem-conta-desativada-danger, .div-mensagem-conta-recuperada-sucess, .div-mensagem-conta-recuperada-danger, .div-mensagem-conta-atualizada-adm-sucess, .div-mensagem-conta-atualizada-adm-danger{
+        min-width: 90%!important;
+        margin-top: 50px;
+        margin-bottom: -30px!important;
+    }
+    /* MENSAGENS DA CONTROLE SERVICO (PAGINA DO ADMINISTRADOR) */
+    .div-mensagem-nao-aceitar-pedido-sucess, .div-mensagem-nao-aceitar-pedido-danger, .div-mensagem-aceitar-pedido-sucess, .div-mensagem-aceitar-pedido-danger{
+        min-width: 100%!important;
+        margin-top: 150px;
+        margin-bottom: -150px!important;
+    }
+     /* MENSAGENS DO CONTATO */
+     .div-mensagem-contato-sucess, .div-mensagem-contato-danger{
+        min-width: 100%!important;
+        margin-top: 50px;
+        margin-bottom: -30px!important;
+    }
+    /* MENSAGENS DA CONTROLE SERVICO (PAGINA DO CLIENTE) */
+    .div-mensagem-servico-agendado-sucess, .div-mensagem-servico-agendado-danger, .div-mensagem-servico-confirmado-sucess, .div-mensagem-servico-confirmado-danger,.div-mensagem-pedido-cancelado-sucess, .div-mensagem-pedido-cancelado-danger{
+        min-width: 100%!important;
+        margin-top: 70px;
+        margin-bottom: -40px!important;
+    }
+
+    .col-esqueci-senha-text{
+        padding: 0 10px!important;
+        margin-top: 50px!important;
+    }
+
+    .txt-conta{
+        margin-top: 70px!important;
+    }
+    .container-servico h1{
+        text-align: center;
     }
     .container-consulta{
         margin-top: 20px;
@@ -1137,6 +1200,9 @@ label{
         padding: 0;
         min-width: 100%;
         margin: 0;
+    }
+    .col-esquci-senha{
+        width: 100%!important;
     }
     .logo-footer {
         width: 100%;
@@ -1152,14 +1218,14 @@ label{
         text-align: center;
         width: 100%;
         margin-bottom: 50px;
-        margin-top: 100px;
+        margin-top: 70px!important;
     }
     
     .titulo-consulta {
         width: 100%;
         text-align: center;
         margin-bottom: 50px!important;
-        margin-top: 100px;
+        margin-top: 100px!important;
     }
 
     .img-dicas {
@@ -1265,11 +1331,6 @@ label{
     .col-cadastro{
         min-width: 100%;
     }   
-
-    .alert-warning{
-        margin-top: 200px;
-        margin-bottom: -100px!important;
-    }
     .form-entrar{
         width: 100%!important;
         padding: 10px 20px;
@@ -1400,7 +1461,8 @@ label{
         margin-top: 100px!important;
     }
     .titulo-contato{
-        margin-top: 50px!important;
+        margin-top: 80px!important;
+        margin-bottom: 30px;
     }
     .linha-estado {    
         width: 180px;    

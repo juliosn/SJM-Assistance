@@ -1,4 +1,5 @@
 <?php
+	session_start();	
  	require_once("Controller.php");
     $logado =  $_SESSION['logado'] ?? NULL;//pega sessão que verifica se o usuario esta logado ou nao
     if(empty($logado) || $logado == False || $_SESSION['permissoes'] != "todas" ){//caso o usuario seja cliente, ou um funcionario sem permissoes ele sai da tela de consulta
@@ -16,10 +17,7 @@
     <title>SJM  Assistance - Consulta</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="img/sjm.png" type="image/x-icon">
+    <script src="bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script>
 		function confirmDelete(delUrl) {
   			if (confirm("Deseja apagar a conta?")) {
@@ -45,44 +43,42 @@
     <main class="main-consulta">
 
 
-		<div class="container container-consulta">
+		<div class="container">
 			<?php //MENSAGEM DE SUCESSO CASO A CONTA SEJA DESATIVADA
-				if(isset($_GET['excluirConta']) && $_GET['excluirConta'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
-					<div class="div-mensagem-conta-criada-sucess">
-						<!-- MENSAGEM DE CONTA DESATIVADA -->
-						<div class="alert alerta-conta-success alert-success alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+				if(isset($_GET['excluirConta']) && $_GET['excluirConta'] == 'sucess'){   ?>
+					<!-- MENSAGEM DE CONTA DESATIVADA COM SUCESSO-->
+					<div class="div-mensagem-conta-desativada-sucess">
+						<div class="alert alert-success alert-dismissible fade show" role="alert">
 							<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
 							<strong>Conta desativada com sucesso!</strong>
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='consulta.php'"></button>
 						</div><!-- Sucesso -->
 					</div>
-				<?php }elseif(isset($_GET['excluirConta']) && $_GET['excluirConta'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
-					
-					<div class="div-mensagem-conta-criada-danger">
-						<!-- MENSAGEM DE CONTA ATIVADA -->
-						<div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+				<?php }elseif(isset($_GET['excluirConta']) && $_GET['excluirConta'] == 'danger'){ ?>
+					<!-- MENSAGEM DE CONTA NAO ATIVADA (ERRO) -->
+					<div class="div-mensagem-conta-desativada-danger">
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
 							<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
 							<strong>Não foi possivel desativar conta!</strong> Tente novamente mais tarde.
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='consulta.php'"></button>
 						</div><!-- Sucesso -->
 					</div>
 			<?php } ?>
 
-			<?php //MENSAGEM DE SUCESSO CASO A CONTA SEJA DESATIVADA
-				if(isset($_GET['recuperarConta']) && $_GET['recuperarConta'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
-					<div class="div-mensagem-conta-criada-sucess">
-						<!-- MENSAGEM DE CONTA DESATIVADA -->
-						<div class="alert alerta-conta-success alert-success alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+			<?php
+				if(isset($_GET['recuperarConta']) && $_GET['recuperarConta'] == 'sucess'){   ?>
+					<!-- MENSAGEM DE CONTA RECUPERADA COM SUCESSO -->
+					<div class="div-mensagem-conta-recuperada-sucess">
+						<div class="alert  alert-success alert-dismissible fade show" role="alert">
 							<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
 							<strong>Conta ativada com sucesso!</strong>
 							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='consulta.php'"></button>
 						</div><!-- Sucesso -->
 					</div>
-				<?php }elseif(isset($_GET['recuperarConta']) && $_GET['recuperarConta'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
-					
-					<div class="div-mensagem-conta-criada-danger">
-						<!-- MENSAGEM DE CONTA ATIVADA -->
-						<div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+				<?php }elseif(isset($_GET['recuperarConta']) && $_GET['recuperarConta'] == 'danger'){ ?>
+					<!-- MENSAGEM DE CONTA NAO RECUPERADA (ERRO) -->
+					<div class="div-mensagem-conta-recuperada-danger">
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
 							<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
 							<strong>Não foi possivel ativada conta!</strong> Tente novamente mais tarde.
 							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='consulta.php'"></button>
@@ -91,20 +87,19 @@
 			<?php } ?>		
 			
 			<?php //MENSAGEM DE CONTA ATUALIZADA
-                if(isset($_GET['atualizarConta']) && $_GET['atualizarConta'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
-                    <div class="div-mensagem-conta-criada-sucess">
-                        <!-- MENSAGEM DE CONTA CRIADA -->
-                        <div class="alert alerta-entrar alerta-conta-success alert-success alert-dismissible fade show" role="alert">
+                if(isset($_GET['atualizarConta']) && $_GET['atualizarConta'] == 'sucess'){   ?>
+					<!-- MENSAGEM DE CONTA CRIADA -->
+                    <div class="div-mensagem-conta-atualizada-adm-sucess">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Conta atualizada com sucesso!</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='consulta.php?consulta=funcionario'"></button>
                         </div><!-- Sucesso -->
                     </div>
-               <?php }elseif(isset($_GET['atualizarConta']) && $_GET['atualizarConta'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
-
-                    <div class="div-mensagem-conta-criada-danger">
-                        <!-- MENSAGEM DE CONTA NÃO CRIADA -->
-                        <div class="alert alerta-entrar alerta-conta-danger alert-danger alert-dismissible fade show" role="alert">
+               <?php }elseif(isset($_GET['atualizarConta']) && $_GET['atualizarConta'] == 'danger'){ ?>
+					<!-- MENSAGEM DE CONTA NÃO CRIADA -->
+                    <div class="div-mensagem-conta-atualizada-adm-danger">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Não foi possivel atualizar sua conta!</strong> Tente novamente mais tarde.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='consulta.php?consulta=funcionario'"></button>

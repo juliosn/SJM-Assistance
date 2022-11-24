@@ -14,10 +14,7 @@
     <title>SJM Assistance - Minha Conta</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="img/sjm.png" type="image/x-icon">
+    <script src="bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </head>
 <body>
@@ -27,20 +24,20 @@
     <main>
         <div class="container container-sobre">
             <?php
-                if(isset($_GET['alterarImagem']) && $_GET['alterarImagem'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
+                if(isset($_GET['alterarImagem']) && $_GET['alterarImagem'] == 'sucess'){   ?>
                     <div class="div-mensagem-conta-criada-sucess">
                         <!-- MENSAGEM DE CONTA CRIADA -->
-                        <div class="alert alerta-entrar alerta-conta-success alert-success alert-dismissible fade show" role="alert">
+                        <div class="alert alerta-entrar  alert-success alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Imagem alterada com sucesso!</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='conta.php'"></button>
                         </div><!-- Sucesso -->
                     </div>
-               <?php }elseif(isset($_GET['alterarImagem']) && $_GET['alterarImagem'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
+               <?php }elseif(isset($_GET['alterarImagem']) && $_GET['alterarImagem'] == 'danger'){ ?>
 
                     <div class="div-mensagem-conta-criada-danger">
                         <!-- MENSAGEM DE CONTA NÃO CRIADA -->
-                        <div class="alert alerta-entrar alerta-conta-danger alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert alerta-entrar alert-danger alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Não foi possivel alterar sua imagem!</strong> Tente novamente mais tarde.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='conta.php'"></button>
@@ -49,20 +46,20 @@
            <?php } ?>
 
            <?php //MENSAGEM DE CONTA ATUALIZADA
-                if(isset($_GET['atualizarConta']) && $_GET['atualizarConta'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
+                if(isset($_GET['atualizarConta']) && $_GET['atualizarConta'] == 'sucess'){   ?>
                     <div class="div-mensagem-conta-criada-sucess">
                         <!-- MENSAGEM DE CONTA CRIADA -->
-                        <div class="alert alerta-entrar alerta-conta-success alert-success alert-dismissible fade show" role="alert">
+                        <div class="alert alerta-entrar  alert-success alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Conta atualizada com sucesso!</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='conta.php'"></button>
                         </div><!-- Sucesso -->
                     </div>
-               <?php }elseif(isset($_GET['atualizarConta']) && $_GET['atualizarConta'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
+               <?php }elseif(isset($_GET['atualizarConta']) && $_GET['atualizarConta'] == 'danger'){ ?>
 
                     <div class="div-mensagem-conta-criada-danger">
                         <!-- MENSAGEM DE CONTA NÃO CRIADA -->
-                        <div class="alert alerta-entrar alerta-conta-danger alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert alerta-entrar alert-danger alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Não foi possivel atualizar sua conta!</strong> Tente novamente mais tarde.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='conta.php'"></button>
@@ -70,12 +67,23 @@
                     </div>
            <?php } ?>
 
+           <?php if(isset($_GET['alterarImagem']) && $_GET['alterarImagem'] == 'extensaoErrada'){ ?>
+                <div class="div-mensagem-conta-criada-danger">
+                    <!-- MENSAGEM DE CONTA NÃO CRIADA -->
+                    <div class="alert alerta-entrar alert-danger alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                        <strong>Não foi possivel atualizar sua conta!</strong> A imagem precisa ser png, jpg ou jpeg.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='conta.php'"></button>
+                    </div><!-- Sucesso -->
+                </div>
+            <?php } ?>
+
 
            <h1 class="titulo-sobre">Minha Conta</h1>
             <form method="POST" enctype="multipart/form-data" class="form-img-Conta" action="Controller.php?funcao=mudarImagemConta">
                 <label for="imgConta" class="label-mudar-img-conta">
                     <div class="mudar-img-conta">
-                        <img src="img/imgConta/<?php echo $_SESSION['imgConta']; ?>" class="mudar-img-conta" height="100%" width="100%">
+                        <img src="img/imgConta/<?php echo $_SESSION['imgConta']; ?>" class="img-conta-script mudar-img-conta" height="100%" width="100%">
                         <div class="hover-mudar-img-conta">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ccc" class="bi bi-camera-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -195,6 +203,29 @@
             </div>
         </div>
     </main>
+
+    <script>
+        //SCRIPT PARA ADICIONAR IMAGEM NO LABEL QUANDO ESCOLHER UMA IMAGEM
+
+        const inputImgConta = document.querySelector("#imgConta");//input da imagem
+        const mudarImgConta = document.querySelector(".mudar-img-conta");//div com a imagem
+
+        inputImgConta.addEventListener('change', function(e){//quando o input da imagem tiver alguma alteração
+            const inputTarget = e.target//pega inpu inteiro
+            const file = inputTarget.files[0];//pega nome da imagem
+                
+            if(file){//se o usuario escolher um arquivo
+                const reader = new FileReader();//variavel para fazer leitura do arquivo
+
+                reader.addEventListener('load', function(e){//quando o reader tiver uma 
+                    const readerTarget = e.target;
+
+                    const imgConta = document.querySelector(".img-conta-script").src = readerTarget.result//muda imagem no label
+                });
+                reader.readAsDataURL(file);//pega url da imagem
+            }
+        })
+    </script>
     <?php include_once "footer.php" ?>
 </body>
 </html>

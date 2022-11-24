@@ -19,12 +19,10 @@
     <title>SJM - Assistance - Serviços</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="img/sjm.png" type="image/x-icon">
     <script>
-    function confirmarCancelamento(delUrl) {
+    function confirmarCancelamento(delUrl) {//funcao para confirmar o cancelamento do pedido
   			if (confirm("Deseja cancelar o pedido?")) {
    				document.location = delUrl;
 	        }  
@@ -38,20 +36,19 @@
     <main>
         <div class="container container-servico container-servico-fun">
             <?php
-                if(isset($_GET['NaoAceitarPedido']) && $_GET['NaoAceitarPedido'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
-                    <div class="div-mensagem-conta-criada-sucess">
-                        <!-- MENSAGEM DE CONTA CRIADA -->
-                        <div class="alert alerta-conta-success alert-success alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+                if(isset($_GET['NaoAceitarPedido']) && $_GET['NaoAceitarPedido'] == 'sucess'){   ?>
+                    <!-- MENSAGEM DE SERVICO CANCELADO -->
+                    <div class="div-mensagem-nao-aceitar-pedido-sucess">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Serviço cancelado com sucesso!</strong>. O usuário será notificado.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='controleServico.php'"></button>
                         </div><!-- Sucesso -->
                     </div>
                <?php }elseif(isset($_GET['NaoAceitarPedido']) && $_GET['NaoAceitarPedido'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
-
-                    <div class="div-mensagem-conta-criada-danger">
-                        <!-- MENSAGEM DE CONTA NÃO CRIADA -->
-                        <div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+                    <!-- MENSAGEM DE SERVICO NÃO CANCELADO -->
+                    <div class="div-mensagem-nao-aceitar-pedido-danger">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Não foi possivel cancelado o serviço!</strong> Tente novamente mais tarde.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='controleServico.php'"></button>
@@ -60,20 +57,19 @@
             <?php } ?>
 
             <?php
-                if(isset($_GET['AceitarPedido']) && $_GET['AceitarPedido'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
-                    <div class="div-mensagem-conta-criada-sucess">
-                        <!-- MENSAGEM DE CONTA CRIADA -->
-                        <div class="alert alerta-conta-success alert-success alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+                if(isset($_GET['AceitarPedido']) && $_GET['AceitarPedido'] == 'sucess'){   ?>
+                    <!-- MENSAGEM DE SERVICO ACEITO -->
+                    <div class="div-mensagem-aceitar-pedido-sucess">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Serviço aceito com sucesso!</strong>. O usuário será notificado.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='controleServico.php'"></button>
                         </div><!-- Sucesso -->
                     </div>
                <?php }elseif(isset($_GET['AceitarPedido']) && $_GET['AceitarPedido'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
-
-                    <div class="div-mensagem-conta-criada-danger">
-                        <!-- MENSAGEM DE CONTA NÃO CRIADA -->
-                        <div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+                    <!-- MENSAGEM DE SERVICO NAO ACEITO -->
+                    <div class="div-mensagem-aceitar-pedido-danger">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Não foi possivel aceitar o serviço!</strong> Tente novamente mais tarde.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='controleServico.php'"></button>

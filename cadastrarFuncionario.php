@@ -1,4 +1,5 @@
-<?php
+<?php   
+    session_start();
     require_once "Controller.php";
     $logado =  $_SESSION['logado'] ?? NULL;//pega sessão que verifica se o usuario esta logado ou nao
     if(empty($logado) || $logado == False || $_SESSION['permissoes'] != "todas" ){//caso o usuario seja cliente, ou um funcionario sem permissoes ele sai da tela de consulta
@@ -16,10 +17,7 @@
     <title>SJM Assistance - Cadastrar Funcionario</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="img/sjm.png" type="image/x-icon">
+    <script src="bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </head>
 <body>
@@ -27,39 +25,38 @@
         <?php include_once "menu.php" ?>
     </header>
     <main class="main-consulta">
-        <h1 class="titulo-cadastrar-funcionario">Cadastrar Funcionario</h1>
         <div class="container">
         <?php //MENSAGEM DE ERRO CASO A CONTA ESTEJA DESATIVADO
-                if(isset($_GET['cad']) && $_GET['cad'] == 'sucess'){  //mostra mensagem de conta criada caso seja criado com sucessi ?>
-                    <div class="div-mensagem-conta-criada-sucess">
-                        <!-- MENSAGEM DE CONTA CRIADA -->
-                        <div class="alert alerta-conta-success alert-success alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+                if(isset($_GET['cad']) && $_GET['cad'] == 'sucess'){   ?>
+                    <!-- MENSAGEM DE CONTA CRIADA -->
+                    <div class="div-mensagem-conta-funcionario-criada-sucess">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Conta Criada com sucesso!</strong> Entre com seu email e senha.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='cadastrarFuncionario.php'"></button>
                         </div><!-- Sucesso -->
                     </div>
-               <?php }elseif(isset($_GET['cad']) && $_GET['cad'] == 'danger'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
-
-                    <div class="div-mensagem-conta-criada-danger">
-                        <!-- MENSAGEM DE CONTA NÃO CRIADA -->
-                        <div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+               <?php }elseif(isset($_GET['cad']) && $_GET['cad'] == 'danger'){ ?>
+                    <!-- MENSAGEM DE CONTA NÃO CRIADA -->
+                    <div class="div-mensagem-conta-funcionario-criada-danger">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                             <strong>Não foi possivel criar uma conta!</strong> Tente novamente mais tarde.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='cadastrarFuncionario.php'"></button>
                         </div><!-- Sucesso -->
                     </div>
             <?php } ?>
-            <?php if(isset($_GET['cadFun']) && $_GET['cadFun'] == 'EmailJaCadastrado'){ //mostra mensagem de conta nao criada caso tenha algum erro ao criar conta ?>
-                <div class="div-mensagem-conta-criada-danger">
-                    <!-- MENSAGEM DE CONTA NÃO CRIADA -->
-                    <div class="alert alerta-conta-danger alert-danger alert-dismissible fade show" style="width: 100%; display: block; margin-top:100px;" role="alert">
+            <?php if(isset($_GET['cadFun']) && $_GET['cadFun'] == 'EmailJaCadastrado'){ ?>
+                    <!-- MENSAGEM DE CONTA NÃO CRIADA POR JA ESTAR CADASTRADO -->
+                <div class="div-mensagem-conta-funcionario-ja-cadastrado-danger">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                         <strong>Não foi possivel cadastrar um funcionario!</strong> Esse email já foi cadastrado.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='cadastrarFuncionario.php'"></button>
                     </div><!-- Sucesso -->
                 </div>
             <?php } ?>
+        <h1 class="titulo-cadastrar-funcionario">Cadastrar Funcionario</h1>
             <div class="row" style="align-items: center;">
                 <div class="col col-cadastro">
                     <form class="form-cadastra-funcionario needs-validation" method="post" novalidate action="Controller.php?funcao=cadastrarFuncionario">

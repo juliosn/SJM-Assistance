@@ -12,9 +12,7 @@
     <title>SJM Assistance</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="img/sjm.png" type="image/x-icon">
 </head>
 <body>
@@ -46,55 +44,6 @@
             </div>
     </header>
     <main>
-        <div class="container"><!-- Marcas Parceiras -->
-            <div class="marcas-parceiras">
-                <h1 class="title-marca">Confira Marcas Parceiras</h1>
-                <div class="row">
-                    <div class="col marca bd-highlight">
-                        <h1>HP</h1>
-                        <p class="text-marcas-parceiras">A HP Inc., é uma empresa de tecnologia 
-                            americana criada em 2015 como sucessora da Hewlett-Packard, juntamente 
-                            com a Hewlett Packard Enterprise. É conhecida por desenvolver e fornecer 
-                            hardware, como computadores pessoais, impressoras e soluções de impressão
-                            3D.</p>
-                        <a href="https://www.hp.com/br-pt/shop/hp-intel?gclid=EAIaIQobChMIxMTP4qak-wIVVxXUAR1rWwUUEAAYASAAEgK2zvD_BwE&gclsrc=aw.ds" class="btn btn-saiba-mais">Saiba mais</a>
-                    </div>
-                    <div class="col marca">
-                        <h1>Acer</h1>
-                        <p class="text-marcas-parceiras">Fundada por Stan Shin, em 2000, a Acer Incorporated é um empresa responsável por oferecer produtos como computadores de 
-                            mesas (desktops), computadores móveis (laptops), servidores, periféricos de 
-                            armazenamento de dados, display e soluções em e-business. Sediada em Nova 
-                            Taipé, Taiwan, é a primeira empresa taiwanesa a se tornar uma multinacional 
-                            e a terceira maior fabricante de PCs do planeta.</p>
-                        <a href="https://br-store.acer.com/?utm_medium=cpc&utm_source=google&utm_campaign=SEM-Amplo-Acer&utm_term=geral&utm_content=Acer-Amplo_Notebooks&gclid=EAIaIQobChMIkpaUmqek-wIVCRXUAR0b3AcTEAAYASAAEgLZKvD_BwE" class="btn btn-saiba-mais">Saiba mais</a>
-                    </div>
-                    <div class="col marca">
-                        <h1>Asus</h1>
-                        <p class="text-marcas-parceiras">Considera a 5ª maior fornecedora de PCs do mundo em 2017, 
-                            a AsusTek Computer Inc., é um empresa multinacional de hardware e 
-                            eletrônicos, desenvolvendo vários produtos como laptops, desktops, 
-                            telefones celulares, placas-mãe, entre diversas outra coisas. 
-                            Foi fundado em Taipei em 1989 por T.H. Tung, Ted Hsu, Wayne Hsieh e M.T. 
-                            Liao, todos os quatros tendo trabalhado anteriormente como engenheiros de 
-                            hardware em outra multinacional.</p>
-                        <a href="https://www.asus.com/br/?utm_source=google&utm_medium=cpc&utm_campaign=22q3_notebook_bz&utm_content=institucional_search__8&gclid=EAIaIQobChMIt63Viamk-wIVCk-RCh2CZgWPEAAYASAAEgLHl_D_BwE" class="btn btn-saiba-mais">Saiba mais</a>
-                    </div>
-                    <div class="col marca">
-                        <h1>Positivo</h1>
-                        <p class="text-marcas-parceiras">Empresa inteiramente brasileira, a Positivo Tecnologia foi fundando em Curitiba, em 1989, 
-                            depois que o Grupo Positivo contratou Hélio Rotenberg para chefiar uma linha de produção 
-                            de computadores para subir a necessidade de PCs dos clientes do grupo, ou seja, escolas 
-                            parceiras da empresa.  A empresa é a décima maior fabricante de computadores do mundo,
-                            além de produzir softwares educacionais, jogos eletrônicos e set-top box para a televisão 
-                            digital brasileira.
-                        </p>
-                        <a href="https://loja.meupositivo.com.br/notebooks?gclid=EAIaIQobChMIq8Oi16mk-wIVBEVIAB2iDwUIEAAYASAAEgL7kPD_BwE" class="btn btn-saiba-mais">Saiba mais</a>
-                    </div>
-                </div>
-            </div>
-            <hr>
-        </div>
-
         <div class="opnioes container"><!-- Tipos de Serviços -->
             <div class="row">
                 <div class="col">
@@ -150,6 +99,47 @@
                     <img class="img-servicos" src="img/sistema_operacional.png" alt="" srcset="">
                 </div>
             </div>
+        </div>
+        
+        <div class="container"><!-- Marcas Parceiras -->
+            <div class="marcas-parceiras">
+                <h1 class="title-marca">Confira Marcas Parceiras</h1>
+                <div class="row">
+                    <div class="col marca bd-highlight">
+                        <h1>HP</h1>
+                        <p class="text-marcas-parceiras">A HP Inc., é uma empresa de tecnologia 
+                            americana criada em 2015. É conhecida por desenvolver e fornecer 
+                            hardware, como computadores pessoais, impressoras e soluções de impressão.
+                            3D.<br><br></p>
+                        <a href="https://www.hp.com/br-pt/shop/hp-intel?gclid=EAIaIQobChMIxMTP4qak-wIVVxXUAR1rWwUUEAAYASAAEgK2zvD_BwE&gclsrc=aw.ds" class="btn btn-saiba-mais">Saiba mais</a>
+                    </div>
+                    <div class="col marca">
+                        <h1>Acer</h1>
+                        <p class="text-marcas-parceiras">Fundada em 2000, a Acer Incorporated é um empresa responsável por oferecer produtos como computadores de 
+                            mesas (desktops), computadores móveis (laptops), servidores, periféricos de 
+                            armazenamento de dados, display e soluções em e-business.</p>
+                        <a href="https://br-store.acer.com/?utm_medium=cpc&utm_source=google&utm_campaign=SEM-Amplo-Acer&utm_term=geral&utm_content=Acer-Amplo_Notebooks&gclid=EAIaIQobChMIkpaUmqek-wIVCRXUAR0b3AcTEAAYASAAEgLZKvD_BwE" class="btn btn-saiba-mais">Saiba mais</a>
+                    </div>
+                    <div class="col marca">
+                        <h1>Asus</h1>
+                        <p class="text-marcas-parceiras">Considera a 5ª maior fornecedora de PCs do mundo em 2017, 
+                            a AsusTek Computer Inc., é um empresa de hardware e 
+                            eletrônicos, desenvolvendo vários produtos como laptops, desktops, 
+                            telefones celulares, placas-mãe, entre diversas outra coisas.</p>
+                        <a href="https://www.asus.com/br/?utm_source=google&utm_medium=cpc&utm_campaign=22q3_notebook_bz&utm_content=institucional_search__8&gclid=EAIaIQobChMIt63Viamk-wIVCk-RCh2CZgWPEAAYASAAEgLHl_D_BwE" class="btn btn-saiba-mais">Saiba mais</a>
+                    </div>
+                    <div class="col marca">
+                        <h1>Positivo</h1>
+                        <p class="text-marcas-parceiras">Empresa inteiramente brasileira, a Positivo Tecnologia foi fundando em Curitiba, em 1989.
+                            A empresa é a décima maior fabricante de computadores do mundo,
+                            além de produzir softwares educacionais, jogos eletrônicos e set-top box para a televisão 
+                            digital brasileira.
+                        </p>
+                        <a href="https://loja.meupositivo.com.br/notebooks?gclid=EAIaIQobChMIq8Oi16mk-wIVBEVIAB2iDwUIEAAYASAAEgL7kPD_BwE" class="btn btn-saiba-mais">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
         </div>
 
         <!-- caso o usuario nao esteja logado, adiciona uma mensagem no canto inferior da tela para ele logar ou criar uma conta -->
