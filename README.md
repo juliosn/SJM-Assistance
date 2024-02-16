@@ -9,10 +9,10 @@
 ![logo-nome-grande](https://github.com/juliosn/SJM-Assistance/assets/99426563/dccdff4e-fc75-45b0-a600-2302242c7928)
 
 
-# Sobre
-<p> SJM Assistance é um projeto designado para a feira tecnológica da ETEC da Zona Leste em 2022: o desenvolvimento de uma hipotética loja especializada em reparos de notebooks e computadores, acompanhada de uma aplicação web destinada ao gerenciamento de agendamentos de manutenção de dispositivos digitais. </p>
+# About
+<p> SJM Assistance is a project designated for the ETEC Zona Leste's technology fair in 2022: the development of a hypothetical store specializing in notebook and computer repairs, accompanied by a web application aimed at managing maintenance schedules for digital devices. </p>
 
-# Tecnologias Utilizadas
+# Technologies Used
 <p align="left">
   &emsp;
   <a href="https://www.php.net/">
@@ -37,21 +37,21 @@
 </p>
 &emsp;
 
-# Demonstração do projeto
-<h2>Página Inicial</h2>
+# Project's Demonstration
+<h2>Homepage</h2>
 <img src="https://github.com/juliosn/SJM-Assistance/assets/99426563/804f813a-26f5-4109-b4b4-034b967ddd07">
 
-<h2>Sobre Nós</h2>
+<h2>About Us</h2>
 <img src="https://github.com/juliosn/SJM-Assistance/assets/99426563/66b682c4-ffe2-46c0-95e9-4ad2e8bd4bfe">
 
-<h2>Dicas</h2>
+<h2>Tips</h2>
 <img src="https://github.com/juliosn/SJM-Assistance/assets/99426563/2d0ef404-2cd5-4d3e-9d77-1b39f97bc381">
 
-<h2>Contato</h2>
+<h2>Contact</h2>
 <img src="https://github.com/juliosn/SJM-Assistance/assets/99426563/b0b42bf9-e997-4272-802a-cb7b21e2c12b">
 
 
-<h2>Tela do administrador</h2>
+<h2>Administrator's view</h2>
 
 ![image](https://user-images.githubusercontent.com/99426704/202479134-147ee96b-7721-4bd6-9982-b686aaea4bc7.png)
 
